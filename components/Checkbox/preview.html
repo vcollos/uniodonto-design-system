@@ -1,0 +1,8 @@
+<!-- @dsCard group="Formulário" height=110 subtitle="desmarcado · marcado" -->
+<div style="padding:var(--s-6);display:flex;flex-direction:column;gap:var(--s-1);background:var(--surface)">
+  <label class="check-row"><span class="cbox on"></span>Li e aceito os termos</label>
+  <label class="check-row"><span class="cbox"></span>Quero receber novidades</label>
+</div>
+<script>
+document.querySelectorAll('.check-row').forEach(function (r) { r.addEventListener('click', function () { r.querySelector('.cbox').classList.toggle('on'); }); });
+</script>

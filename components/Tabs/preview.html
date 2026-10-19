@@ -1,0 +1,17 @@
+<!-- @dsCard group="Navegação" height=150 subtitle="Aba ativa com sublinhado vinho" -->
+<div style="padding:var(--s-6);background:var(--surface)">
+  <div class="tabs-list" role="tablist">
+    <button class="tab-trigger active" role="tab" aria-selected="true">Visão geral</button>
+    <button class="tab-trigger" role="tab" aria-selected="false">Cobertura</button>
+    <button class="tab-trigger" role="tab" aria-selected="false">Rede credenciada</button>
+  </div>
+  <div id="panel" style="padding:24px 0 8px;color:var(--text);font-size:14px">Conteúdo de <strong>Visão geral</strong>.</div>
+</div>
+<script>
+var tabs = document.querySelectorAll('.tab-trigger');
+tabs.forEach(function (t) { t.addEventListener('click', function () {
+  tabs.forEach(function (x) { x.classList.remove('active'); x.setAttribute('aria-selected', 'false'); });
+  t.classList.add('active'); t.setAttribute('aria-selected', 'true');
+  document.getElementById('panel').innerHTML = 'Conteúdo de <strong>' + t.textContent + '</strong>.';
+}); });
+</script>

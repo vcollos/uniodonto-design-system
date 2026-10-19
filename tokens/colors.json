@@ -1,0 +1,143 @@
+{
+  "$schema": "https://uniodonto.design/schemas/tokens-v1.json",
+  "version": "1.0.0",
+  "updatedAt": "2026-04-18",
+  "description": "Tokens de cor oficiais Uniodonto. Fonte única da verdade para todas as aplicações digitais e impressas.",
+  "rules": [
+    "NUNCA usar cores fora desta lista em materiais Uniodonto.",
+    "Vinho-Escuro Uniodonto (#810E56) é obrigatório para identificar a instituição.",
+    "Paleta complementar é permitida APENAS como cor do símbolo, fundos de apoio ou acentos — nunca substitui o Vinho-Escuro.",
+    "Em mídias digitais usar SEMPRE valores RGB/HEX. CMYK é reservado para impressos.",
+    "Cores de datas comemorativas têm uso restrito ao período da campanha.",
+    "Fundo claro é SEMPRE #FFFFFF ou #F3F7FA (neutro azulado). Proibido fundo claro com tinta rosada/avinhada."
+  ],
+  "institutional": {
+    "vinhoEscuro": {
+      "name": "Vinho-Escuro Uniodonto",
+      "role": "primary",
+      "hex": "#810E56",
+      "rgb": [129, 14, 86],
+      "cmyk": [35, 100, 15, 35],
+      "pantone": "242 C",
+      "usage": "Cor oficial da marca. Logotipo institucional, títulos principais, CTAs primários.",
+      "contrast": { "onWhite": "AAA", "onVinhoClaro": "AA" }
+    },
+    "branco": {
+      "name": "Branco",
+      "role": "surface",
+      "hex": "#FFFFFF",
+      "rgb": [255, 255, 255],
+      "usage": "Fundo padrão. Logotipo em versão negativa."
+    },
+    "preto": {
+      "name": "Preto",
+      "role": "text",
+      "hex": "#111111",
+      "rgb": [17, 17, 17],
+      "usage": "Texto corrido em fundos claros quando vinho for inadequado."
+    }
+  },
+  "support": {
+    "vinhoMedio": {
+      "name": "Vinho Médio Uniodonto",
+      "hex": "#A60069",
+      "rgb": [166, 0, 105],
+      "cmyk": [35, 100, 15, 0],
+      "pantone": "234 C",
+      "usage": "Variação tonal para composições. Combinar SEMPRE com Vinho-Escuro."
+    },
+    "vinhoUltra": {
+      "name": "Vinho Ultra Uniodonto",
+      "hex": "#550039",
+      "rgb": [85, 0, 57],
+      "cmyk": [55, 100, 30, 50],
+      "pantone": "229 C",
+      "usage": "Fundos escuros institucionais, hover de elementos vinho."
+    },
+    "vinhoClaro": {
+      "name": "Vinho-Claro Uniodonto",
+      "hex": "#BC5688",
+      "rgb": [188, 86, 136],
+      "cmyk": [25, 75, 15, 0],
+      "pantone": "674 C",
+      "usage": "Acentos suaves, hover states, gráficos secundários."
+    }
+  },
+  "complementary": {
+    "roxo": {
+      "name": "Roxo Uniodonto",
+      "hex": "#BF9CFF",
+      "rgb": [191, 156, 255],
+      "cmyk": [35, 65, 0, 0],
+      "pantone": "2572 C",
+      "usage": "Cor oficial das Singulares. Fundos de destaque alegre."
+    },
+    "pessego": {
+      "name": "Pêssego Uniodonto",
+      "hex": "#FF9FAD",
+      "rgb": [255, 159, 173],
+      "cmyk": [0, 50, 16, 0],
+      "pantone": "1765 C",
+      "usage": "Acolhimento, campanhas femininas, ilustrações."
+    },
+    "ciano": {
+      "name": "Ciano Uniodonto",
+      "hex": "#60EBFF",
+      "rgb": [96, 235, 255],
+      "cmyk": [50, 0, 7, 0],
+      "pantone": "310 C",
+      "usage": "Frescor, conteúdos educativos, elementos digitais."
+    },
+    "lima": {
+      "name": "Lima Uniodonto",
+      "hex": "#E1FF7B",
+      "rgb": [225, 255, 123],
+      "cmyk": [20, 0, 66, 0],
+      "pantone": "379 C",
+      "usage": "Alegria, prevenção, destaques de saúde."
+    },
+    "goiaba": {
+      "name": "Goiaba Uniodonto",
+      "hex": "#FF637E",
+      "rgb": [255, 99, 126],
+      "cmyk": [0, 75, 30, 0],
+      "pantone": "184 C",
+      "usage": "Energia, CTAs não-institucionais, campanhas."
+    }
+  },
+  "campaigns": {
+    "description": "Uso restrito a datas comemorativas. Proibido fora do período.",
+    "outubroRosa": { "hex": "#FF4DA6", "period": "10", "theme": "Outubro Rosa" },
+    "novembroAzul": { "hex": "#1E6FD9", "period": "11", "theme": "Novembro Azul" },
+    "setembroAmarelo": { "hex": "#F5C518", "period": "09", "theme": "Setembro Amarelo" },
+    "verdeBrasil": { "hex": "#00A859", "period": "09/11", "theme": "Datas nacionais" }
+  },
+  "semantic": {
+    "text": {
+      "primary": "{institutional.vinhoEscuro.hex}",
+      "secondary": "#4A2A3D",
+      "muted": "#6B7C8A",
+      "onDark": "{institutional.branco.hex}",
+      "onBrand": "{institutional.branco.hex}"
+    },
+    "surface": {
+      "default": "{institutional.branco.hex}",
+      "subtle": "#F8FAFC",
+      "muted": "#F3F7FA",
+      "inset": "#E8EEF3",
+      "brand": "{institutional.vinhoEscuro.hex}",
+      "brandSoft": "#F7D9E8"
+    },
+    "border": {
+      "default": "#DBE4EB",
+      "strong": "{institutional.vinhoEscuro.hex}",
+      "subtle": "#E8EEF3"
+    },
+    "feedback": {
+      "success": "#2E7D55",
+      "warning": "#C96A1F",
+      "danger": "#B3261E",
+      "info": "#1F6FAF"
+    }
+  }
+}

@@ -1,0 +1,38 @@
+<!-- @dsCard height=300 -->
+<style>
+  html, body { margin: 0; background: var(--bg); }
+  .cv { position: relative; width: 960px; height: 300px; overflow: hidden; background: var(--bg); font-family: var(--font-brand); }
+  .cv svg { position: absolute; left: 0; top: 0; }
+  .vinho { fill: var(--uni-vinho-escuro); } .ultra { fill: var(--uni-vinho-ultra); }
+  .roxo { fill: var(--uni-roxo); } .pessego { fill: var(--uni-pessego); } .lima { fill: var(--uni-lima); }
+  .tile { rx: var(--r-xl); }
+  .u { fill: none; stroke-width: 12; stroke-linecap: round; }
+  .on-vinho { stroke: var(--n-0); } .on-light { stroke: var(--uni-vinho-escuro); } .on-ultra { stroke: var(--uni-goiaba); }
+  .txt { position: absolute; left: 48px; bottom: 40px; max-width: 864px; }
+  .name { margin: 0; font-size: 60px; line-height: .95; font-weight: 500; letter-spacing: -0.02em; color: var(--uni-vinho-escuro); white-space: nowrap; }
+  .tag { margin: 12px 0 0; max-width: 440px; font-size: 14px; font-style: italic; color: var(--text-muted); }
+</style>
+<div class="cv">
+  <svg width="960" height="300" viewBox="0 0 960 300" aria-hidden="true">
+    <!--
+      blocks: uni-vinho-escuro 320×112, uni-vinho-ultra 160×112, uni-roxo 128×112, uni-lima 128×112, uni-pessego 160×112 — vinho takes the biggest field (obrigatório), complementares as apoio
+      arrangement: top-band skeleton (name too wide for the 440px zone); a strip of unequal bands bleeding off the top edge, gaps s-4
+      pattern: the open "U" arc of the U Pattern / símbolo (assets/Padronagens), a literal motif — the padronagem modular repeats this rounded-bottom U as the brand's signature shape
+      steps/radii: gap s-4 (16px), bottom corners r-xl (16px), name inset s-12 (48px), stroke 12px
+    -->
+    <rect class="vinho tile" x="0" y="-24" width="320" height="136"/>
+    <rect class="ultra tile" x="336" y="-24" width="160" height="136"/>
+    <rect class="roxo tile" x="512" y="-24" width="128" height="136"/>
+    <rect class="lima tile" x="656" y="-24" width="128" height="136"/>
+    <rect class="pessego tile" x="800" y="-24" width="160" height="136"/>
+    <path class="u on-vinho" d="M224 18 L221 52 Q220 70 236 78 Q252 84 260 84 Q268 84 284 78 Q300 70 299 52 L296 18"/>
+    <path class="u on-ultra" d="M380 18 L377 52 Q376 70 392 78 Q408 84 416 84 Q424 84 440 78 Q456 70 455 52 L452 18"/>
+    <path class="u on-light" d="M540 18 L537 52 Q536 70 552 78 Q568 84 576 84 Q584 84 600 78 Q616 70 615 52 L612 18"/>
+    <path class="u on-light" d="M844 18 L841 52 Q840 70 856 78 Q872 84 880 84 Q888 84 904 78 Q920 70 919 52 L916 18"/>
+  </svg>
+  <div class="txt">
+    <h1 class="name">Uniodonto Design System</h1>
+    <p class="tag">O nosso sorriso é único.</p>
+  </div>
+</div>
+<script></script>

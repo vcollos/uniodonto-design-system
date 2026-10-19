@@ -1,0 +1,222 @@
+/* Uniodonto Design System — generated from tokens.json */
+:root, [data-theme="light"] {
+  --uni-vinho-escuro: #810e56; /* Vinho-Escuro Uniodonto (Pantone 242 C) — cor oficial e obrigatória da marca: logotipo institucional, títulos, CTA primário (`btn primary`), sublinhado da aba ativa. Branco sobre ela: 9,9:1; sobre `n-75`: 9,2:1. Também é cor permitida para o selo SomosCoop. */
+  --uni-vinho-medio: #a60069; /* Vinho Médio (Pantone 234 C) — variação tonal; hover do botão primário. Combinar sempre com Vinho-Escuro. Também é cor permitida para o selo SomosCoop. */
+  --uni-vinho-ultra: #550039; /* Vinho Ultra (Pantone 229 C) — fundos escuros institucionais, active do primário, texto forte (`text-strong`) e texto sobre cores complementares. */
+  --uni-vinho-claro: #bc5688; /* Vinho-Claro (Pantone 674 C) — acentos suaves e gráficos secundários; não usar como cor de texto. Também é cor permitida para o selo SomosCoop. */
+  --uni-preto: #121212; /* Preto da marca monocromática (C0 M0 Y0 K100, R18 G18 B18, #121212, confirmado no brand book) — só quando a reprodução é de uma cor; nunca preto sobre fundo colorido. (tokens/colors.json registra #111111.) */
+  --uni-roxo: #bf9cff; /* Roxo Uniodonto (Pantone 2572 C) — cor oficial das Singulares; anel de foco (`border-focus`, `sh-ring-focus`); badge `roxo`. Contraste 2,2:1 sobre branco: nunca como texto, e o anel de foco fica abaixo de 3:1 (valor da fonte mantido). Também é cor permitida para o selo SomosCoop. */
+  --uni-pessego: #ff9fad; /* Pêssego Uniodonto (Pantone 1765 C) — acolhimento, campanhas, ilustrações; fundo de apoio, nunca texto. O brand book traz #ff9fad e R255 G156 B173 (que daria #ff9cad); mantido o HEX publicado. Também é cor permitida para o selo SomosCoop. */
+  --uni-ciano: #60ebff; /* Ciano Uniodonto (Pantone 310 C) — frescor, conteúdos educativos, elementos digitais; fundo de apoio, nunca texto. Também é cor permitida para o selo SomosCoop. */
+  --uni-lima: #e1ff7b; /* Lima Uniodonto (Pantone 379 C) — alegria, prevenção; fundo do botão `accent` com texto `uni-vinho-ultra` (13:1). Também é cor permitida para o selo SomosCoop. */
+  --uni-goiaba: #ff637e; /* Goiaba Uniodonto (Pantone 184 C) — energia, CTAs não-institucionais, campanhas; badge `goiaba`. Também é cor permitida para o selo SomosCoop. */
+  --n-0: #ffffff; /* Neutro 0 / Branco — `surface`, cards, logotipo negativo. Selo SomosCoop em branco sobre vinho. */
+  --n-50: #f8fafc; /* Neutro 50 — superfície sutil. */
+  --n-75: #f3f7fa; /* Neutro 75 — fundo claro padrão da página (`bg`, `surface-muted`). Fundo claro é sempre branco ou este azulado, nunca rosado. */
+  --n-100: #e8eef3; /* Neutro 100 — `surface-inset`, `border`. */
+  --n-150: #dbe4eb; /* Neutro 150 — `border-strong`: borda de inputs, botão secundário. */
+  --n-200: #c2cfd9; /* Neutro 200 — borda em hover; borda da checkbox desmarcada. */
+  --n-300: #98a9b7; /* Neutro 300 — `text-subtle`. */
+  --n-400: #6b7c8a; /* Neutro 400 — `text-muted`. */
+  --n-500: #4e5d69; /* Neutro 500. */
+  --n-600: #38444e; /* Neutro 600. */
+  --n-700: #232c34; /* Neutro 700 — `text`, texto corrido. */
+  --n-800: #151c21; /* Neutro 800. */
+  --n-900: #0b1013; /* Neutro 900. */
+  --bg: var(--n-75); /* Fundo da página. */
+  --surface: var(--n-0); /* Cards, inputs, botão secundário. */
+  --surface-muted: var(--n-75); /* Hover de botões tertiary/secondary, badge `neutral`, input desabilitado. */
+  --surface-inset: var(--n-100); /* Active do botão secundário, áreas rebaixadas. */
+  --text: var(--n-700); /* Texto corrido sobre `bg` e `surface` (13:1+). */
+  --text-strong: var(--uni-vinho-ultra); /* Títulos, labels e texto de ênfase sobre `bg` e `surface` (13,5:1). */
+  --text-muted: var(--n-400); /* Texto secundário, hints, abas inativas sobre `surface` (4,3:1) e `bg` (4,0:1 — abaixo de 4,5:1; valor da fonte mantido, use só em 14px+ semibold ou 24px+ sobre `bg`). */
+  --text-subtle: var(--n-300); /* Placeholder e texto desabilitado sobre `surface` — 2,4:1, abaixo do mínimo de texto; valor da fonte mantido. */
+  --text-on-brand: var(--n-0); /* Texto sobre `uni-vinho-escuro` (9,9:1) e demais vinhos. */
+  --border: var(--n-100); /* Divisórias, borda de card, lista de abas. */
+  --border-strong: var(--n-150); /* Borda de controles (input, botão secundário). */
+  --border-focus: var(--uni-roxo); /* Borda de foco da busca; ver nota de contraste em `uni-roxo`. */
+  --success: #1f7a4c; /* Texto/ícone de sucesso sobre `success-bg` (4,7:1) e `surface`. */
+  --success-bg: #e6f3eb; /* Fundo do badge `success`. */
+  --warning: #b45b0e; /* Texto de pendência sobre `warning-bg` — 4,1:1, abaixo de 4,5:1; valor da fonte mantido. */
+  --warning-bg: #fbecd8; /* Fundo do badge `warning`. */
+  --danger: #b3261e; /* Erro, ação destrutiva: texto sobre `danger-bg` (5,4:1) e `surface`; borda de input inválido. */
+  --danger-bg: #fbe4e2; /* Fundo do badge `danger` e hover do botão `danger`. */
+  --info: #1f6faf; /* Texto informativo sobre `info-bg` (4,5:1). */
+  --info-bg: #e2eef8; /* Fundo do badge `info`. */
+  --brand-soft: #f7d9e8; /* `surface.brandSoft` de tokens/colors.json — item selecionado do Select. */
+  --campanha-outubro-rosa: #ff4da6; /* Grupo Mulheres do brand book: Dia Internacional da Mulher (8/3) e Outubro Rosa. Só no período; HEX de tokens/colors.json — a página de datas do brand book não traz código. */
+  --campanha-novembro-azul: #1e6fd9; /* Grupo Homens do brand book: Novembro Azul. Só no período. HEX de tokens/colors.json; no brand book a cor aparece mais turquesa — confirme com a Gerência de Comunicação. */
+  --campanha-setembro-amarelo: #f5c518; /* Setembro Amarelo. Só no período; HEX de tokens/colors.json. */
+  --campanha-verde-brasil: #00a859; /* Grupo Datas nacionais: Independência (7/9) e Proclamação da República (15/11). Só no período. HEX de tokens/colors.json; no brand book a cor aparece verde-menta — confirme com a Gerência de Comunicação. */
+  --sh-xs: 0 1px 2px rgba(35, 44, 52, 0.05); /* Botão secundário, input. */
+  --sh-sm: 0 1px 2px rgba(35, 44, 52, 0.06), 0 1px 3px rgba(35, 44, 52, 0.05); /* Elevação leve. */
+  --sh-md: 0 2px 4px rgba(35, 44, 52, 0.04), 0 6px 16px rgba(35, 44, 52, 0.07); /* Card em hover, popover do Select. */
+  --sh-lg: 0 4px 8px rgba(35, 44, 52, 0.05), 0 16px 32px rgba(35, 44, 52, 0.10); /* Menus e painéis flutuantes. */
+  --sh-xl: 0 8px 16px rgba(35, 44, 52, 0.06), 0 24px 60px rgba(35, 44, 52, 0.14); /* Modais. */
+  --sh-inset: inset 0 0 0 1px rgba(255,255,255,0.08); /* Brilho interno sobre fundos escuros. */
+  --sh-ring-brand: 0 0 0 3px rgba(129, 14, 86, 0.15); /* Anel de seleção vinho. */
+  --sh-ring-focus: 0 0 0 3px rgba(191, 156, 255, 0.50); /* Foco visível de botões e inputs (roxo). */
+  --sh-ring-danger: 0 0 0 3px rgba(179, 38, 30, 0.18); /* Foco de input inválido. */
+  --sh-ring-success: 0 0 0 3px rgba(31, 122, 76, 0.18); /* Foco de input válido. */
+}
+:root {
+  --s-1: 4px; /* Gap mínimo. */
+  --s-2: 8px; /* Gap entre ícone e texto, badges. */
+  --s-3: 12px; /* Padding horizontal de input. */
+  --s-4: 16px; /* Gap padrão entre elementos. */
+  --s-5: 20px; /* Padding horizontal do botão lg. */
+  --s-6: 24px; /* Padding interno mínimo de card. */
+  --s-8: 32px; /* Espaço entre grupos. */
+  --s-10: 40px; /* Seções compactas. */
+  --s-12: 48px; /* Seções de página. */
+  --s-16: 64px; /* Seções grandes. */
+  --s-20: 80px; /* Heros. */
+  --r-xs: 4px; /* Checkbox. */
+  --r-sm: 6px; /* Badge, topo das abas, linha de checkbox. */
+  --r-md: 8px; /* Botões, inputs, busca. */
+  --r-lg: 12px; /* Blocos médios. */
+  --r-xl: 16px; /* Card. */
+  --r-2xl: 20px; /* Painéis grandes. */
+  --r-3xl: 28px; /* Hero, mockups. */
+  --r-full: 9999px; /* Pílulas e chips — nunca em botão retangular padrão. */
+  --font-brand: 'Georama', 'Inter', system-ui, -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, 'SF Mono', monospace;
+  --font-display: 'Caveat', cursive;
+  --text-display-xl: 500 80px/1.05 var(--font-brand); /* Heros, aberturas de campanha */
+  --text-display-lg: 500 64px/1.1 var(--font-brand); /* Headlines de landing */
+  --text-display-md: 500 48px/1.15 var(--font-brand); /* Headlines secundários */
+  --text-heading-1: 600 36px/1.2 var(--font-brand); /* Título de página */
+  --text-heading-2: 600 28px/1.25 var(--font-brand); /* Seções */
+  --text-heading-3: 600 22px/1.3 var(--font-brand); /* Subseções, cards */
+  --text-heading-4: 600 18px/1.35 var(--font-brand); /* Títulos inline */
+  --text-body-lg: 400 18px/1.3 var(--font-brand); /* Parágrafos de destaque — regulagem do brand book: entreletra 35, entrelinha 130%. */
+  --text-body-md: 400 16px/1.3 var(--font-brand); /* Texto padrão — regulagem do brand book: entreletra 35, entrelinha 130%. */
+  --text-body-sm: 400 14px/1.3 var(--font-brand); /* Legendas, metadados — regulagem do brand book: entreletra 35, entrelinha 130%. */
+  --text-caption: 500 12px/1.4 var(--font-brand); /* Microcopy, labels */
+  --text-overline: 600 11px/1.4 var(--font-brand); /* Rótulos de seção (Title Case) */
+  --text-tagline: italic 400 18px/1.3 var(--font-brand); /* Tagline institucional: Georama Itálico, caixa alta e baixa, entreletra 40, à distância h do logotipo e com a largura dele. */
+  --text-tagline-destaque: italic 700 18px/1.3 var(--font-brand); /* Tagline em destaque e assinatura de Singular: Georama Bold Itálico, entreletra 40; também a palavra de ênfase nas manchetes. */
+  --text-display-caveat: 400 48px/1.1 var(--font-display); /* Caveat (Google Fonts), só títulos e subtítulos de peças menos formais — eventos, anúncios não institucionais, cards de redes sociais. Nunca em peças institucionais. */
+}
+.display-xl {
+  font-family: var(--font-brand);
+  font-size: 80px;
+  line-height: 1.05;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+}
+.display-lg {
+  font-family: var(--font-brand);
+  font-size: 64px;
+  line-height: 1.1;
+  font-weight: 500;
+  letter-spacing: -0.015em;
+}
+.display-md {
+  font-family: var(--font-brand);
+  font-size: 48px;
+  line-height: 1.15;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+.heading-1 {
+  font-family: var(--font-brand);
+  font-size: 36px;
+  line-height: 1.2;
+  font-weight: 600;
+  letter-spacing: -0.005em;
+}
+.heading-2 {
+  font-family: var(--font-brand);
+  font-size: 28px;
+  line-height: 1.25;
+  font-weight: 600;
+  letter-spacing: 0;
+}
+.heading-3 {
+  font-family: var(--font-brand);
+  font-size: 22px;
+  line-height: 1.3;
+  font-weight: 600;
+  letter-spacing: 0;
+}
+.heading-4 {
+  font-family: var(--font-brand);
+  font-size: 18px;
+  line-height: 1.35;
+  font-weight: 600;
+  letter-spacing: 0;
+}
+.body-lg {
+  font-family: var(--font-brand);
+  font-size: 18px;
+  line-height: 1.3;
+  font-weight: 400;
+  letter-spacing: 0.035em;
+}
+.body-md {
+  font-family: var(--font-brand);
+  font-size: 16px;
+  line-height: 1.3;
+  font-weight: 400;
+  letter-spacing: 0.035em;
+}
+.body-sm {
+  font-family: var(--font-brand);
+  font-size: 14px;
+  line-height: 1.3;
+  font-weight: 400;
+  letter-spacing: 0.035em;
+}
+.caption {
+  font-family: var(--font-brand);
+  font-size: 12px;
+  line-height: 1.4;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+}
+.overline {
+  font-family: var(--font-brand);
+  font-size: 11px;
+  line-height: 1.4;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+}
+.tagline {
+  font-family: var(--font-brand);
+  font-size: 18px;
+  line-height: 1.3;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  font-style: italic;
+}
+.tagline-destaque {
+  font-family: var(--font-brand);
+  font-size: 18px;
+  line-height: 1.3;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  font-style: italic;
+}
+.display-caveat {
+  font-family: var(--font-display);
+  font-size: 48px;
+  line-height: 1.1;
+  font-weight: 400;
+  letter-spacing: 0;
+}
+@font-face {
+  font-family: "Georama";
+  src: url("fonts/Georama-VariableFont_wdth_wght.ttf") format("truetype");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Georama";
+  src: url("fonts/Georama-Italic-VariableFont_wdth_wght.ttf") format("truetype");
+  font-weight: 100 900;
+  font-style: italic;
+  font-display: swap;
+}
+

@@ -1,0 +1,31 @@
+<!-- @dsCard group="Marca" height=480 width=960 subtitle="Soluções Uniodonto: assinaturas positiva e negativa" -->
+<style>
+  .sm { padding: var(--s-6); background: var(--bg); font-family: var(--font-brand); display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--s-3); }
+  .sm-item { border-radius: var(--r-xl); overflow: hidden; border: 1px solid var(--border); background: var(--n-0); }
+  .sm-row { display: grid; grid-template-columns: 1fr 1fr; }
+  .sm-row > div { height: 96px; display: flex; align-items: center; justify-content: center; padding: var(--s-4); }
+  .sm-row > div.neg { background: var(--uni-vinho-escuro); }
+  .sm-row img { max-width: 100%; max-height: 44px; }
+  .sm-cap { font-size: 12px; font-style: italic; color: var(--text-muted); padding: 8px 12px; border-top: 1px solid var(--border); }
+  .sm-cap b { color: var(--uni-vinho-escuro); }
+</style>
+<div class="sm" id="sm"></div>
+<script>
+(function () {
+  var items = [
+    ['bancou', 'Banco U', 'fintech'], ['dental', 'Dental U', 'loja'], ['mobile', 'Mobile', ''],
+    ['rxscan', 'RXScan', ''], ['sigu', 'Sig U', 'software de gestão'], ['ucx', 'UCX', 'Customer Experience'],
+    ['ufast', 'U Fast', 'app de intercâmbio'], ['uhub', 'U Hub', ''], ['urede', 'U Rede', 'suprimento de rede']
+  ];
+  var root = document.getElementById('sm');
+  items.forEach(function (it) {
+    var p = '../../assets/Submarcas/' + it[0];
+    var el = document.createElement('div');
+    el.className = 'sm-item';
+    el.innerHTML = '<div class="sm-row"><div><img src="' + p + '_positivo.svg" alt="' + it[1] + ' positivo"></div>' +
+      '<div class="neg"><img src="' + p + '_negativo.svg" alt="' + it[1] + ' negativo"></div></div>' +
+      '<div class="sm-cap"><b>' + it[1] + '</b>' + (it[2] ? ' · ' + it[2] : '') + '</div>';
+    root.appendChild(el);
+  });
+})();
+</script>

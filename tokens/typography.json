@@ -1,0 +1,49 @@
+{
+  "$schema": "https://uniodonto.design/schemas/tokens-v1.json",
+  "version": "1.0.0",
+  "description": "Tokens tipográficos Uniodonto. Georama é a fonte institucional. Arial é fallback de sistema.",
+  "rules": [
+    "Georama é a ÚNICA fonte permitida em materiais institucionais digitais.",
+    "Títulos usam Regular; destaque usa Itálico no peso oposto (ex: título Regular + destaque Bold Itálico).",
+    "NUNCA usar títulos inteiramente em maiúsculas — dilui a sensação simples e convidativa da marca.",
+    "Usar Caixa-alta apenas na primeira letra das palavras principais.",
+    "Espaçamento entreletra padrão: 35pt (~0.035em).",
+    "Espaçamento entrelinha: 130% do corpo da fonte.",
+    "Arial é permitida APENAS em e-mails e documentos onde Georama não pode ser carregada."
+  ],
+  "families": {
+    "brand": {
+      "name": "Georama",
+      "source": "Google Fonts",
+      "url": "https://fonts.google.com/specimen/Georama",
+      "license": "Open Font License",
+      "stack": "'Georama', 'Inter', system-ui, sans-serif",
+      "weights": [100, 300, 400, 500, 600, 700, 800, 900],
+      "styles": ["normal", "italic"]
+    },
+    "fallback": {
+      "name": "Arial",
+      "stack": "Arial, Helvetica, sans-serif",
+      "usage": "Email, documentos Word, ambientes sem Georama"
+    },
+    "mono": {
+      "name": "JetBrains Mono",
+      "stack": "'JetBrains Mono', 'Fira Code', monospace",
+      "usage": "Exibição de código, tokens e valores técnicos"
+    }
+  },
+  "scale": {
+    "display-xl": { "size": "80px", "lineHeight": "1.05", "weight": 500, "tracking": "-0.02em", "usage": "Heros, aberturas de campanha" },
+    "display-lg": { "size": "64px", "lineHeight": "1.1", "weight": 500, "tracking": "-0.015em", "usage": "Headlines de landing" },
+    "display-md": { "size": "48px", "lineHeight": "1.15", "weight": 500, "tracking": "-0.01em", "usage": "Headlines secundários" },
+    "heading-1": { "size": "36px", "lineHeight": "1.2", "weight": 600, "tracking": "-0.005em", "usage": "Título de página" },
+    "heading-2": { "size": "28px", "lineHeight": "1.25", "weight": 600, "tracking": "0", "usage": "Seções" },
+    "heading-3": { "size": "22px", "lineHeight": "1.3", "weight": 600, "tracking": "0", "usage": "Subseções, cards" },
+    "heading-4": { "size": "18px", "lineHeight": "1.35", "weight": 600, "tracking": "0", "usage": "Títulos inline" },
+    "body-lg": { "size": "18px", "lineHeight": "1.55", "weight": 400, "tracking": "0.01em", "usage": "Parágrafos de destaque" },
+    "body-md": { "size": "16px", "lineHeight": "1.55", "weight": 400, "tracking": "0.01em", "usage": "Texto padrão" },
+    "body-sm": { "size": "14px", "lineHeight": "1.5", "weight": 400, "tracking": "0.015em", "usage": "Legendas, metadados" },
+    "caption": { "size": "12px", "lineHeight": "1.4", "weight": 500, "tracking": "0.04em", "usage": "Microcopy, labels" },
+    "overline": { "size": "11px", "lineHeight": "1.4", "weight": 600, "tracking": "0.12em", "usage": "Rótulos de seção (Title Case)" }
+  }
+}

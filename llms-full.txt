@@ -1,0 +1,1400 @@
+# Uniodonto Design System — texto completo
+
+Fonte: https://raw.githubusercontent.com/vcollos/uniodonto-design-system/main/
+
+
+---
+<!-- arquivo: AGENTS.md -->
+
+# AGENTS.md — Uniodonto Design System
+
+Contexto operacional para agentes de código e de conteúdo (Codex, ChatGPT, Claude, Gemini, Cursor etc.) que produzem peças, telas ou textos da marca **Uniodonto**, a primeira cooperativa odontológica do Brasil.
+
+> Fonte de verdade: este repositório. Os valores daqui vencem qualquer coisa que você "saiba" sobre a marca. Se algo não estiver aqui, pergunte — não invente cor, fonte, ícone ou logo.
+
+## Ordem de leitura
+
+1. `RULES.md` — regras resumidas (cor, tipo, tom, componentes). **Leia sempre.**
+2. `tokens.json` (dados) ou `tokens.css` (variáveis CSS prontas). Tabela legível: `docs/tokens.md`.
+3. `brandbook/` — brand book completo em Markdown, na ordem 01→06.
+4. `assets/<Grupo>/README.md` — antes de usar qualquer arquivo de um grupo.
+5. `components/<Comp>/README.md` + `preview.html` — regras e exemplo de cada componente.
+
+Sem acesso ao repositório inteiro? Use `llms.txt` (índice com URLs) ou `llms-full.txt` (todo o texto em um arquivo).
+
+## Regras inegociáveis
+
+- **SomosCoop em toda peça.** O selo (`assets/SomosCoop/`) assina todas as expressões da marca: num canto oposto à marca Uniodonto, no máximo 3/4 da largura do logotipo, em branco ou numa cor da paleta. Nunca redesenhe o selo.
+- **Vinho-Escuro `#810e56` (`--uni-vinho-escuro`) identifica a instituição** e está sempre presente. A paleta vibrante (roxo, pêssego, ciano, lima, goiaba) é apoio — nunca substitui o vinho e nunca é cor de texto corrido.
+- **Fundo claro só branco `#ffffff` ou `#f3f7fa`.** Nunca rosado ou avinhado.
+- **Fonte: Georama** (`fonts/`, OFL). Títulos em regular; destaque em itálico no peso oposto. Texto corrido com entreletra 0.035em e entrelinha 130%. Arial só onde Georama não carrega (e-mail, editores). Caveat só em peça não institucional.
+- **Logos, símbolo, submarcas e ícones: só os SVGs oficiais de `assets/`.** Nunca desenhe, recolora, distorça, rotacione ou aplique efeito. Área de proteção = altura do "U".
+- **Peças da operadora levam a tarja ANS** (`components/TarjaANS`), com dados atualizados.
+- **Tom:** confiável, cuidadoso, acolhedor, simples, alegre. "Nós" para o espírito cooperativista; "a Uniodonto" para afirmar experiência. Caixa alta e baixa ("Contratar Plano"); nunca títulos todos em maiúsculas; sem exclamações em série. Tagline única e inalterada: *Uniodonto. O nosso sorriso é único.*
+- Sem emoji no lugar de ícone. Fotos sempre em recorte arredondado.
+
+## Como usar em código
+
+```html
+<link rel="stylesheet" href="tokens.css">          <!-- variáveis + @font-face (caminhos relativos a fonts/) -->
+<link rel="stylesheet" href="components/bundle.css"> <!-- classes: btn, field, input, card, badge, tabs, pill-tag, quick-card, ans-tarja -->
+
+<button class="btn primary">Contratar Plano</button>
+<img src="assets/Logos/logo-horizontal-vinho.svg" alt="Uniodonto" height="48">
+<img src="assets/SomosCoop/somoscoop-vinho.svg" alt="SomosCoop" height="24">
+```
+
+- Em Tailwind/outros: mapeie os nomes de `tokens.json` (ex.: `uni-vinho-escuro`, `s-4`, `r-xl`) para o tema; não crie cores novas.
+- Via CDN sem clonar: `https://cdn.jsdelivr.net/gh/vcollos/uniodonto-design-system@main/tokens.css` (mesmo padrão para qualquer arquivo).
+- Os SVGs têm cor embutida e funcionam em `<img>`.
+
+## Mapa do repositório
+
+| Caminho | Conteúdo |
+| --- | --- |
+| `RULES.md` | Regras resumidas da marca |
+| `tokens.json`, `tokens.css`, `tokens/*.json` | Tokens (cor, tipo, espaço, raio, sombra); `tokens/colors.json` tem CMYK/Pantone para impresso |
+| `docs/tokens.md` | Tabela de tokens com uso e contraste |
+| `brandbook/01..06` | Essência, SomosCoop, Marca, Ingredientes, Aplicações, Linguagem Verbal |
+| `guidelines/` | Notas curtas de logo e voz |
+| `components/` | `bundle.css` + README/preview de cada componente |
+| `assets/Logos`, `Simbolo`, `SomosCoop` | Marca-mãe e selo |
+| `assets/Submarcas` | Banco U, Dental U, Mobile, RXScan, Sig U, UCX, U Fast, U Hub, U Rede |
+| `assets/Singulares` | Template das Singulares (nome editável em Georama Itálico) |
+| `assets/Icones`, `Formas`, `Padronagens`, `Paleta` | Ingredientes visuais |
+| `fonts/` | Georama variável (normal e itálica) |
+
+## Antes de entregar, confira
+
+- [ ] Selo SomosCoop presente, no canto, ≤ 3/4 do logotipo
+- [ ] Vinho-Escuro presente; vibrantes só como apoio
+- [ ] Georama carregada; caixa alta e baixa
+- [ ] Logos/ícones vindos de `assets/`, sem alteração
+- [ ] Tarja ANS quando houver dados da operadora
+- [ ] Texto no tom da marca, tagline exata
+
+## Manutenção
+
+O design system é editado no Claude (artefato "Uniodonto Design System") e espelhado aqui. Não edite tokens neste repo sem atualizar a fonte; abra issue/PR descrevendo a mudança.
+
+---
+<!-- arquivo: RULES.md -->
+
+# Regras da marca — Uniodonto Design System
+
+Sistema de marca e interface da Uniodonto, a primeira cooperativa odontológica do Brasil e do mundo. **A marca carrega os valores do cooperativismo em sua essência**: toda peça assina com o selo SomosCoop. Siga as regras abaixo; tokens em `tokens.json`, classes em `components/bundle.css`, e o brand book completo nas seções Essência da Marca, Assinatura SomosCoop, Marca e Assinaturas, Ingredientes de Linguagem, Aplicações e Linguagem Verbal.
+
+## Antes de qualquer peça
+
+- Parta da essência: **"Unimos experiência e cuidado para transformar sorrisos em todo o Brasil."** Escolha o atributo pelo público — Unidade (cooperados), Experiência (empresas), Otimismo (beneficiários), Relacionamento (comunidade).
+- **Assine com o selo SomosCoop em todas as expressões da marca**: num canto, oposto à marca Uniodonto, no máximo 3/4 da largura do logotipo, em branco ou numa cor da paleta (`AssinaturaSomosCoop`). Sem espaço para duas assinaturas, use a assinatura conjunta a 1/2 U. Use os arquivos oficiais de `assets/SomosCoop` (`somoscoop-vinho`, `-roxo`, `-negativo`); nunca redesenhe o selo.
+- Peças da operadora levam a tarja ANS (`TarjaANS`), com dados atualizados.
+
+## Conteúdo e tom
+
+- Seja confiável, cuidadoso, acolhedor, simples, alegre, experiente, convidativo e familiar; ajuste ao público (Linguagem Verbal).
+- Use "nós" para aproximar do espírito cooperativista e "a Uniodonto" (ela) para afirmar experiência.
+- Caixa alta e baixa: maiúscula só na primeira letra das palavras ("Contratar Plano"); nunca títulos inteiros em maiúsculas nem exclamações em série.
+- Frases curtas, voz ativa e pessoal: "Cuidamos do seu sorriso".
+- Tagline única, sem alterações: *Uniodonto. O nosso sorriso é único.*
+- Vocabulário do otimismo: sorriso, alegria, felicidade, tranquilidade, cuidado, leveza, bem-estar, saudável, simplicidade, único.
+
+## Cor
+
+- `uni-vinho-escuro` identifica a instituição e é obrigatória: logotipo institucional, títulos, CTA primário. Os vinhos de apoio (`uni-vinho-medio`, `uni-vinho-ultra`, `uni-vinho-claro`) só aparecem junto dela.
+- A paleta vibrante (`uni-roxo`, `uni-pessego`, `uni-ciano`, `uni-lima`, `uni-goiaba`) serve como cor do símbolo, fundo de apoio, forma ou padronagem — nunca substitui o Vinho-Escuro e nunca é cor de texto corrido. `uni-roxo` é a cor oficial das Singulares.
+- Fundo claro é sempre `n-0` (branco) ou `bg`/`n-75` (#F3F7FA, azulado). Proibido fundo claro rosado ou avinhado.
+- Texto: `text` para corrido, `text-strong` para títulos e labels, `text-muted` para apoio, `text-on-brand` sobre vinhos. `text-muted` sobre `bg` (4,0:1) e `text-subtle` (2,4:1) ficam abaixo de 4,5:1 — use `text-muted` só em texto secundário curto e `text-subtle` só para placeholder.
+- Estados: `success`/`success-bg`, `warning`/`warning-bg`, `danger`/`danger-bg`, `info`/`info-bg`; acompanhe sempre a cor com palavra ou ícone.
+- Cores `campanha-*` só no período da data comemorativa, e voltam ao padrão logo depois.
+- Digital em HEX/RGB; impresso em CMYK/Pantone (`tokens/colors.json`).
+
+## Tipografia
+
+- Georama é a fonte institucional (`--font-brand`, arquivos em `fonts/`). Títulos em Regular; destaque em Itálico no peso oposto. Na manchete, misture regular/light itálico com bold itálico no mesmo bloco ("A nova marca da Uniodonto **carrega os valores do cooperativismo**").
+- Texto corrido com entreletra 35 e entrelinha 130% (`body-lg`, `body-md`, `body-sm`).
+- Tagline em `tagline` (Georama Itálico) ou `tagline-destaque` (Bold Itálico), entreletra 40.
+- Arial só em e-mails e documentos onde Georama não carrega. Caveat (`display-caveat`) só em títulos de peças não institucionais — nunca institucionais. `--font-mono` só para código.
+
+## Espaçamento, raio e elevação
+
+- Use só a escala `s-1`…`s-20` (base 4px). Padding mínimo de card: `s-6`.
+- A linguagem é arredondada como o "U": `r-lg` em botões, `r-md` em inputs, `r-sm` em badges, `r-xl` em cards, `r-full` em pílulas e tags (`pill-tag`). Fotos e mockups sempre em recorte arredondado, nunca em retângulo reto.
+- Sombras discretas e frias. Foco visível com `sh-ring-focus` (roxo) somado à troca de borda para `uni-vinho-escuro`.
+
+## Componentes
+
+- `btn primary` (Vinho-Escuro, texto bold itálico): um por tela. `btn secondary`, `btn tertiary`, `btn accent` (Lima, só não institucional), `btn danger`.
+- Formulários: `field` com `label` bold itálico sempre visível, `input`, `hint` e `error` específicos.
+- `badge`, `card`, `tabs-list`/`tab-trigger`, `check-row`/`cbox`, `pill-tag` (etiqueta de contorno vinho) e `quick-card` (Acesso Rápido do portal, ícone simplificado sempre com descritivo).
+- Marca: `AssinaturaSomosCoop` (proporção, posição e assinatura conjunta) e `TarjaANS`.
+
+## Marca, padronagens, formas e imagem
+
+- Logotipos oficiais em `assets/Logos` (horizontal, vertical, só logotipo; positivo e negativo; símbolo em cada cor), símbolo em `assets/Simbolo`. Área de proteção = altura do "U". Sem distorção, rotação, sombra, contorno ou gradiente.
+- Padronagens (`assets/Padronagens`): estilo 1 (arcada de U e U invertido) e estilo 2 (anéis de U); institucional sempre com vinho presente.
+- Formas (`assets/Formas`): squircle, trapézio em U e pílula, como boxes, molduras e abas.
+- Ícones em `assets/Icones`: destaque (cor vibrante + contorno vinho), simplificados (web, sempre com descritivo), serviços (dente em linha vinho). Sem emoji.
+- Fotografia: alegria, espontaneidade, naturalidade e diversidade; recortes sobre cor vibrante com padronagem de U, ou ambiente com luz natural.
+
+---
+<!-- arquivo: brandbook/01-essencia.md -->
+
+# Essência da Marca
+
+A Uniodonto é a primeira cooperativa odontológica do Brasil e do mundo. **A marca carrega os valores do cooperativismo em sua essência** — e o selo do movimento SomosCoop é como identificamos visualmente esse cooperativismo. Por isso, o selo assina **todas** as expressões da marca Uniodonto (regras em Assinatura SomosCoop).
+
+## Nossa essência
+
+> **Unimos experiência e cuidado para transformar sorrisos em todo o Brasil.**
+
+Use esta frase como bússola de qualquer peça: se o material não une experiência e cuidado, ou não aponta para transformar sorrisos, ele ainda não está pronto.
+
+## Estratégia inspiracional
+
+- **Renovação sem ruptura.** Aos 50 anos, a Uniodonto olha para o futuro sem esquecer a história, o pioneirismo e as qualidades que a trouxeram até aqui. "Mudar é flexibilizar. Não é jogar fora o que temos, mas abrir espaço para o novo."
+- **Molécula e unidade.** Uma cooperativa é mais do que uma singular + outra singular: é um todo vivo, formado por singulares, associados e clientes. "Um corpo saudável é um todo conectado."
+- **Único, mas não sozinho.** Saúde é se reconhecer único e parte de um grupo, uma família. A alegria é parte de um corpo saudável: cuidar é um estado diário de atenção, não de tensão.
+- **Prevenir é cuidar também da sua alegria.** Segurança e cuidado podem ser movimentos alegres e contagiantes.
+
+## Atributos
+
+A ferramenta estratégica organiza a marca em quatro estruturas. Cada uma tem um atributo principal, valores de apoio e um público prioritário — escolha a estrutura pelo público da peça.
+
+| Estrutura | Atributo principal | Valores | Comunicamos principalmente a |
+| --- | --- | --- | --- |
+| Exclusiva | **Unidade** | Transparência · Pertencimento | Dentistas cooperados e colaboradores |
+| Institucional | **Experiência** | Compromisso · Abrangência | Empresas e corretores |
+| Inovadora | **Otimismo** | Transformação · Simplicidade | Consumidores finais e beneficiários |
+| Sustentável | **Relacionamento** | Cuidado · Diversidade · Compromisso | Comunidades e sociedade civil |
+
+- **Unidade** — os dentistas são cooperados; isso traz pertencimento e interesse numa marca forte. É no todo que nos reconhecemos, acolhidos nas nossas singularidades.
+- **Experiência** — 50 anos de presença ativa traduzem compromisso com a saúde dos brasileiros; a abrangência nacional é referência na categoria.
+- **Otimismo** — uma marca que transforma sorrisos e lembra que é possível se cuidar com alegria e simplicidade, também na contratação, no atendimento e na marcação de consultas (portal intuitivo e fácil de navegar).
+- **Relacionamento** — cuidar da comunidade vai além dos dentes: é compromisso com cada engrenagem da cooperativa e com a diversidade das pessoas. *Ser singular e plural.*
+
+## Posicionamento
+
+| Pioneirismo | União | Autonomia |
+| --- | --- | --- |
+| Primeira cooperativa odontológica do Brasil e do mundo; capacidade de inovar que expressa segurança, confiança e qualidade dos associados. | A união de uma comunidade que acredita no seu propósito: em cada cidade, em cada consultório, acessamos a qualidade Uniodonto. | Somos muitos, estamos em todo o País e cada um de nós é único e autônomo. Somos singulares e plurais. |
+
+No brand book esses três valores são cards nos três vinhos: `uni-vinho-ultra` (Pioneirismo), `uni-vinho-escuro` (União) e `uni-vinho-medio` (Autonomia).
+
+## Arquétipos
+
+- **Prestativo (principal):** acredita que a energia que emana para o mundo muda as coisas ao seu redor.
+- **Inocente (apoio):** otimismo, alegria e vontade de viver o lado bom da vida.
+
+A caixa alta e baixa (só a primeira letra maiúscula) existe para equilibrar esses dois arquétipos: simples, agregadora, próxima.
+
+## Tagline
+
+> **Uniodonto. O nosso sorriso é único.**
+
+É como o consumidor final deve nos perceber em uma frase, e é uma só em todo o Brasil — nunca altere a frase nem crie taglines locais. Tipografia e assinatura em Marca e Assinaturas.
+
+---
+<!-- arquivo: brandbook/02-somoscoop.md -->
+
+# Assinatura SomosCoop
+
+> Carregamos o cooperativismo para o mundo. A forma de levantarmos essa bandeira é por meio do movimento SomosCoop. **Devemos aplicar a marca SomosCoop em todas as nossas expressões visuais.**
+
+O selo SomosCoop é obrigatório em toda peça da marca Uniodonto — impressa, digital, sinalização, frota. A única exceção é a peça que não comporta duas assinaturas: aí use a assinatura conjunta (abaixo), nunca a omissão.
+
+## O selo
+
+- Use sempre o arquivo oficial do movimento SomosCoop: "somos" em traço fino sobre "coop" em bold arredondado, com o sinal de avanço à direita. **Nunca redesenhe, recomponha ou aproxime o selo.**
+- Arquivos oficiais em `assets/SomosCoop`: `somoscoop-vinho.svg` (claro), `somoscoop-roxo.svg`, `somoscoop-negativo.svg` (branco) e `somoscoop-positivo.svg` (cor original do movimento). As versões empilhada, colorida e com tag estão em AI/PDF/PNG na pasta da marca SomosCoop no Drive.
+- O selo aparece em linha ("somos coop»", usos pequenos e assinatura conjunta) ou empilhado ("somos" sobre "coop»", timbrado, frota, peças-herói).
+
+## Cor
+
+O selo pode assumir a cor que melhor se adequa à aplicação: **branco** ou qualquer cor da paleta Uniodonto — `uni-vinho-escuro`, `uni-roxo`, `uni-pessego`, `uni-ciano`, `uni-lima`, `uni-goiaba`, `uni-vinho-medio`, `uni-vinho-claro`.
+
+- Sobre fundos claros, prefira `uni-vinho-escuro` ou `uni-roxo` (é o que o brand book usa em papelaria, timbrado e frota).
+- Sobre vinho, use branco ou uma cor vibrante (a capa do brand book usa `uni-goiaba` sobre vinho; o site usa branco na barra vinho).
+- Mantenha contraste com o fundo: as mesmas regras de legibilidade da marca valem para o selo.
+
+## Proporção
+
+- **O selo nunca é maior que 3/4 da largura do logotipo Uniodonto** (logotipo = a palavra "uniodonto", sem o símbolo).
+- Nas aplicações reais ele fica bem menor: de 1/3 a 3/5 da largura do logotipo. A marca Uniodonto tem destaque; o SomosCoop é endosso.
+
+## Posicionamento
+
+- A posição do selo não pode ser mais relevante que a marca Uniodonto. **Cantos superiores ou inferiores** — é o canto que estabelece a hierarquia entre as marcas.
+- Coloque o selo no canto **oposto** ao da marca Uniodonto (logo no topo direito → selo no canto inferior direito ou superior esquerdo).
+- Peças com capa e verso: a marca vai na capa; o selo vai no verso, num canto.
+- Página única: marca no topo, selo num canto inferior.
+- Nunca centralize o selo nem o encoste no logotipo fora da assinatura conjunta.
+
+## Assinatura conjunta
+
+Use só quando a peça não permite assinatura distanciada (só cabem as marcas) e é preciso identificar o movimento SomosCoop.
+
+| Versão | Construção |
+| --- | --- |
+| Vertical | Marca completa (logotipo + símbolo) em cima; selo abaixo, alinhado à esquerda com o logotipo, a **1/2 U** de distância; largura do selo até 3/4 do logotipo. |
+| Horizontal | Selo à direita do símbolo, a **1/2 U** de distância, alinhado pela base do logotipo; altura do selo próxima da altura x do logotipo (cerca de 1/2 da largura do logotipo). |
+
+"U" é a altura da letra U do logotipo — o mesmo módulo da área de proteção.
+
+## Onde o selo aparece (referência do brand book)
+
+| Peça | Marca Uniodonto | Selo SomosCoop |
+| --- | --- | --- |
+| Site (barra superior) | Logotipo vinho no header | Branco, canto esquerdo da barra vinho do topo |
+| Timbrado nacional | Logotipo vinho, topo direito | Topo esquerdo, empilhado, ~1/3 do logotipo |
+| Timbrado Singular | Logotipo + símbolo roxo, topo direito | Rodapé direito, acima da faixa de padronagem, em roxo |
+| Envelopes | Verso: logotipo + tagline | Verso, canto inferior esquerdo, acima da padronagem, vinho |
+| Pasta | Capa: logotipo branco | Contracapa, canto inferior direito, branco |
+| Cartão de visita | Frente: logotipo + símbolo | Frente, canto inferior esquerdo, roxo claro, ~3/5 do logotipo |
+| Carteirinha | Frente: logotipo branco | Canto inferior direito da área vinho, roxo claro |
+| Van | Logotipo grande na lateral | Para-lama dianteiro, vinho, empilhado |
+| Frota | Logotipo na porta dianteira | Lateral traseira, vinho, empilhado, ~1/3 do logo |
+
+Crachá, fachada, recepção, sinalização, cards de redes sociais e stories aparecem no brand book sem o selo. A regra do livro é "todas as expressões": inclua o selo também nessas peças, num canto, seguindo as regras acima.
+
+## Não faça
+
+- Não aplique o selo maior que 3/4 do logotipo nem com destaque igual ou maior que a marca Uniodonto.
+- Não centralize o selo nem o coloque no mesmo canto da marca.
+- Não use cores fora da paleta Uniodonto (exceto branco).
+- Não redesenhe, distorça ou aplique efeitos ao selo.
+- Não omita o selo para "limpar" a peça.
+
+---
+<!-- arquivo: brandbook/03-marca.md -->
+
+# Marca e Assinaturas
+
+A marca nasce do olhar no detalhe do sorriso: as letras foram desenhadas a partir do formato dos dentes, criando um elemento modular — o "U" — capaz de ser singular e plural. Use sempre os arquivos digitais fornecidos (`assets/Logos`, `assets/Simbolo`); nunca redesenhe.
+
+- **Logotipo (A):** a palavra "uniodonto", em minúsculas.
+- **Símbolo (B):** círculo sólido com o "U" vazado — "uma parte do todo que compõe o sorriso".
+
+## Arquitetura de marcas
+
+A Uniodonto segue a arquitetura **monolítica**: as marcas endossadas obedecem aos mesmos padrões de aplicação e linguagem.
+
+- **Uniodonto Brasil** — a marca-mãe, institucional.
+- **Uniodonto Singular** — cada cooperativa local; símbolo e nome em `uni-roxo`.
+- **Soluções Uniodonto** — submarcas com assinatura própria: Banco U (fintech), Dental U (loja; endosso "uniodonto"), Mobile, RXScan, Sig U (software de gestão, ciano), UCX, U Fast (app de intercâmbio, goiaba), U Hub e U Rede. Arquivos em `assets/Submarcas`.
+- **Modalidades de atendimento** — sem marca, só o descritivo com ícone de apoio: Plantão 24h, Teleodontologia, Unidade Móvel, Central de Vendas, App Mobile.
+- **Segmentos** — "uniodonto" + descritor (express, preventiva).
+
+## Versões
+
+| Versão | Logotipo | Símbolo | Fundo | Uso |
+| --- | --- | --- | --- | --- |
+| Positiva institucional | `uni-vinho-escuro` | `uni-vinho-escuro` | Branco ou cores complementares | Preferencial em materiais institucionais |
+| Negativa institucional | Branco | Branco | Variações de vinho | Institucional sobre fundo escuro |
+| Positiva não institucional | `uni-vinho-escuro` | Roxo, Pêssego, Ciano, Lima ou Goiaba | Branco | Campanhas, anúncios, filmes |
+| Negativa não institucional | Branco | Roxo, Pêssego, Ciano, Lima ou Goiaba | Variações de vinho | Campanhas sobre vinho |
+| Monocromática | `uni-preto` (#121212) ou branco | Idem | Branco ou preto | Só quando a reprodução é de uma cor |
+
+- Sobre fundo de cor complementar, use a versão positiva (símbolo vinho), nunca símbolo complementar sobre outra complementar.
+- Avatar de redes sociais: sempre o símbolo em `uni-vinho-escuro`.
+- Na papelaria, logotipo na frente e símbolo no verso.
+
+## Composições
+
+- **Distanciada (preferencial):** logotipo à esquerda, símbolo afastado à direita, mantendo a proporção.
+- **Horizontal:** símbolo à direita do logotipo, espaço = 1/2 u; só alinhamento pela direita.
+- **Vertical:** símbolo centralizado acima do logotipo, espaço = 1/2 u; só alinhamento centralizado.
+
+## Área de proteção
+
+O módulo é a altura da letra "U" do logotipo, livre em todo o perímetro — de textos, imagens, grafismos e limites do documento.
+
+## Tagline
+
+- "O nosso sorriso é único." em Georama Itálico (institucional) ou Georama Bold Itálico (destaque/Singular), caixa alta e baixa, entreletra 40 (estilos `tagline` e `tagline-destaque`).
+- Vertical: abaixo do logotipo, à distância "h", alinhada à esquerda e com a largura do logotipo. Horizontal: ao lado do símbolo, com a largura do logotipo.
+- Como título, a cor da tagline pode variar dentro da paleta do layout; a ênfase em bold itálico cai numa palavra ("O nosso sorriso é **único.**" ou "O nosso **sorriso** é único.").
+
+## Assinatura com outras marcas
+
+- Horizontal: distância de 1,5x a largura do símbolo (com símbolo) ou 2 U (só logotipo), alinhamento centralizado.
+- Vertical: distância de 1x a altura do símbolo (com símbolo) ou 2 U (só logotipo).
+- Defina a hierarquia pelo tamanho relativo das marcas.
+
+## Submarca Singulares
+
+- `uni-roxo` é a cor oficial das Singulares: símbolo e nome da Singular em roxo; logotipo em vinho (ou branco sobre vinho).
+- Nome da Singular em Georama Itálico, caixa alta e baixa, entreletra 25, com a altura do "U".
+- Prefira as versões distantes: evite juntar símbolo ao logotipo para não criar excesso de elementos.
+- Espaços: 1/2 u ao lado, 3/4 u abaixo.
+- Use o template de `assets/Singulares` (nome como texto editável) pelo componente `AssinaturaSingular`; nunca recomponha à mão.
+
+## Submarcas Soluções
+
+- **U fast:** símbolo + "Fast" em `uni-vinho-escuro` e `uni-goiaba`.
+- **Sig U:** "Sig" + símbolo em `uni-vinho-escuro` e `uni-ciano`.
+- Positiva: marca vinho sobre a cor da submarca; negativa: marca na cor sobre vinho.
+- Todas as assinaturas (Banco U, Dental U, Mobile, RXScan, Sig U, UCX, U Fast, U Hub, U Rede) estão em `assets/Submarcas`, positivo e negativo; vitrine no componente `Submarcas`.
+
+## Usos incorretos
+
+Não altere para cor fora da paleta; não sobreponha com pouco contraste; não use fundo de pouco contraste; não distorça; não rotacione; não invada a área de arejamento; não mude a posição do símbolo; não inclua efeitos; não insira em formas que desconfigurem a marca. Na monocromática, não aplique preto sobre fundo colorido.
+
+---
+<!-- arquivo: brandbook/04-ingredientes.md -->
+
+# Ingredientes de Linguagem
+
+## Paleta cromática
+
+- **Oficial:** `uni-vinho-escuro` (#810e56) — identifica a instituição e está sempre presente.
+- **Apoio (vinhos):** `uni-vinho-medio`, `uni-vinho-ultra`, `uni-vinho-claro` — trazem elasticidade às composições; sempre combinados com o Vinho-Escuro, nunca no lugar dele.
+- **Vibrantes (complementares):** `uni-roxo`, `uni-pessego`, `uni-ciano`, `uni-lima`, `uni-goiaba` — cuidado, otimismo e alegria; combinações vibrantes ou sóbrias.
+- Pode-se usar a variação tonal das cores, diminuindo a opacidade.
+- **Perfis de cor:** digital só RGB/HEX; impresso sempre CMYK (Pantone quando houver cor especial); sinalização CMYK + código Pantone ao fornecedor. Os códigos estão em `tokens/colors.json`.
+
+### Datas comemorativas
+
+Paleta temporária: o símbolo e a comunicação podem assumi-la só durante o período, voltando ao padrão logo depois. Proibida fora da temporada; nova cor só com a Gerência de Comunicação.
+
+| Grupo | Datas | Token |
+| --- | --- | --- |
+| Datas nacionais | Independência 7/9, Proclamação da República 15/11 | `campanha-verde-brasil` |
+| Mulheres | Dia Internacional da Mulher 8/3, Outubro Rosa | `campanha-outubro-rosa` |
+| Homens | Novembro Azul | `campanha-novembro-azul` |
+| Setembro Amarelo | Setembro | `campanha-setembro-amarelo` |
+
+## Tipografia
+
+- **Institucional — Georama** (Google Fonts, OFL). Títulos em Regular, podendo variar o peso; destaque em Itálico no peso oposto. Texto corrido em Regular ou Regular Itálico (itálico = mais clássico; reto = mais moderno). Regulagem: entreletra 35, entrelinha 130% do corpo.
+- **Ênfase de manchete:** misture no mesmo bloco light/regular itálico com bold/extrabold itálico — "A nova marca da Uniodonto **carrega os valores do cooperativismo em sua essência.**" É a assinatura tipográfica da marca.
+- **Apoio — Arial:** só em documentos de editor de texto, e-mail e onde Georama não carrega.
+- **Display — Caveat** (Google Fonts, manuscrita): só títulos ou subtítulos de peças menos formais (evento, anúncio não institucional, card de redes sociais). **Nunca em peças institucionais.** Estilo `display-caveat`.
+
+## Padronagens
+
+Construídas a partir do "U" da marca; reforçam alegria e união e o conceito "nosso sorriso é único". Use os arquivos de `assets/Padronagens`.
+
+- **Estilo 1 — arcada:** fileiras alternadas de U e U invertido em traço, lado a lado, sempre respeitando a distância entre eles e formando o grafismo de arcada dentária. Sempre cortada pelas bordas.
+- **Estilo 2 — circular:** U do mesmo tamanho em anéis concêntricos, com centro vazio — que pode emoldurar um rosto recortado ou o símbolo.
+- **Institucional:** Vinho ou Vinho-Escuro sempre presente — com a paleta vibrante (mais alegria) ou só dois tons de vinho (versão sóbria).
+- **Não institucional:** combinações harmoniosas de duas cores vibrantes (roxo + U brancos, lima + U ciano, pêssego + U lima).
+- Aplicações: capa e base de envelopes, faixa de rodapé do timbrado, cordão do crachá, bandeira, fachada, aberturas.
+
+## Formas
+
+Derivadas do "U" e do "o" do logotipo: **squircle**, **trapézio arredondado** (forma de "U"/dente), **pílula** e barras-linha; sólidas ou em contorno, nas cores vibrantes ou vinho.
+
+- Box de informações: trapézio (lima ou branco) com logo e título sobre capas ilustradas.
+- Aba de envelope: a metade inferior curva da forma, em vinho.
+- Molduras de foto e de ícones (van), cards de redes sociais, totens e placas em pílula vertical.
+- Fotos e mockups ficam sempre em máscara arredondada (pílula, squircle, trapézio) — nunca em retângulo reto.
+
+## Ícones
+
+Pictogramas estruturados a partir da marca (cabeça squircle, tronco trapézio, pernas em pílula), claros e objetivos.
+
+- **Destaque** (comunicação e sinalização): parte em preenchimento de uma cor vibrante + parte em contorno `uni-vinho-escuro`, traço médio, terminais arredondados; sem container.
+- **Simplificados** (web e mobile): chapados, às vezes em dois tons; **sempre acompanhados do descritivo**. No site ficam em cards squircle (`AcessoRapido`). Arquivos em `assets/Icones`.
+- **Serviços:** dente em linha vinho com raízes em U invertido + um detalhe por serviço (preventivo, estético, limpeza, aparelho, implante, emergência 24h).
+- Nunca use emoji no lugar de ícone.
+
+## Fotografia
+
+- **Fundos coloridos:** pessoas ou objetos recortados sobre cor chapada da paleta vibrante, quase sempre com padronagem de U (estilo 2 ao redor da cabeça ou estilo 1). Foto colorida ou P&B sobre o fundo colorido; roupas em tons que harmonizam.
+- **Ambiente:** luz solar natural, foco e desfoque, sem exagero de brilho e contraste; cenas de aprendizado, inovação, diálogo, atenção na atividade.
+- **Sempre:** alegria, espontaneidade, naturalidade — sorriso aberto com dentes, riso não posado; diversidade e brasilidade (idades, etnias, regiões).
+- Imagens em recorte arredondado.
+
+## Ilustração
+
+Gestual, com linhas e texturas (giz, pontilhado, hachura, rabisco), abstração junto a elementos figurativos do universo odontológico (pessoas, sorrisos, dentes, pasta, fio dental). Paleta: vinho, ciano, lima, pêssego/goiaba e creme.
+
+## Componentes digitais
+
+O site segue a linguagem da marca (estudo do brand book, desktop e mobile):
+
+- **Barra superior vinho** com o selo SomosCoop em branco à esquerda e os links de portais à direita (Beneficiário, Empresa, Cooperado/Credenciado, TISS, Singular, 2ª via de boleto).
+- **Header branco:** logotipo vinho, navegação em vinho bold itálico (Contratar Plano, Buscar Dentista, Fale Conosco), busca.
+- **Formulário de cotação:** eyebrow pequena bold itálico com traço curto, título vinho em itálico regular, labels bold itálico acima dos campos, campos de canto arredondado em cinza-claro com borda fina, botão vinho de canto bem arredondado com texto branco bold itálico, texto LGPD com link para a Política de Privacidade.
+- **Acesso rápido:** grade de cards squircle com ícone simplificado + rótulo em duas linhas (primeira palavra bold itálico); card ativo em vinho sólido.
+- **Rodapé:** horário de atendimento e endereço.
+- Toda peça com dados da operadora traz a **tarja ANS** (`TarjaANS`).
+
+---
+<!-- arquivo: brandbook/05-aplicacoes.md -->
+
+# Aplicações
+
+Toda peça combina os mesmos ingredientes: marca Uniodonto com destaque, **selo SomosCoop num canto oposto**, padronagem ou formas, e — quando há dados da operadora — a tarja ANS.
+
+## Tarja ANS
+
+- Retângulo preto com borda branca e "ANS - nº34.012-0" em branco, seguido de "Responsável Técnico | CRO" e "Operadora | CRO" em duas linhas pequenas bold (`TarjaANS`).
+- Normalmente na vertical, numa borda lateral da peça; na van, no timbrado Singular e na carteirinha a posição varia.
+- Ao finalizar qualquer arquivo, atualize os dados da ANS e dos órgãos de classe (CRO, CFO) conforme as regras vigentes no período.
+
+## Peças
+
+| Peça | Composição |
+| --- | --- |
+| Pasta | Vinho com padronagem estilo 1 multicolor no terço superior; bolsa interna goiaba. Capa: logotipo branco + tagline. Contracapa: símbolo, "uniodonto.coop.br", selo SomosCoop branco no canto inferior direito, tarja ANS vertical na lateral. |
+| Envelope saco | Branco, aba arredondada vinho com símbolo branco, padronagem multicolor na base. Verso: logotipo + tagline, selo SomosCoop vinho no canto inferior esquerdo. |
+| Envelope ofício | Frente vinho com padronagem tom sobre tom e aba vinho-escura; verso branco com faixa multicolor e selo SomosCoop. |
+| Cartão de visita | Cantos muito arredondados. Frente branca: logotipo + símbolo, nome em bold itálico vinho, CRO e cargo em roxo itálico, contatos em itálico; selo SomosCoop no canto inferior esquerdo. Verso vinho com padronagem tom sobre tom e tagline branca. |
+| Timbrado nacional | A4 branco: logotipo + tagline no topo direito, selo SomosCoop no topo esquerdo, faixa de padronagem no rodapé, símbolo no canto inferior direito, tarja ANS vertical na margem esquerda. |
+| Timbrado Singular | Logotipo + símbolo roxo + nome da Singular no topo direito; selo SomosCoop roxo no rodapé direito, acima da padronagem. |
+| Crachá | Vinho; foto em recorte arredondado (fundo cinza ou cor vibrante), símbolo no topo direito, nome e cargo dentro de contorno em U invertido; cordão com padronagem. |
+| Carteirinha | Vinho com padronagem estilo 2 tom sobre tom, logotipo + Singular, símbolo grande em roxo claro, selo SomosCoop no canto inferior direito, tarja ANS no verso. |
+| Fachada e recepção | Painéis vinho com logotipo branco e padronagem tom sobre tom; balcão branco arredondado com símbolo vinho; foto recortada sobre cor vibrante. |
+| Totem e placas | Pílula vertical branca com espessura vinho, ícones destaque, texto vinho (destaque em bold itálico), divisor goiaba. |
+| Van | Branca, faixa vinho "Atendimento **Odontológico** móvel", trapézios coloridos com foto e ícones, logotipo + tagline, selo SomosCoop vinho no para-lama dianteiro. |
+| Frota | Branca, logotipo + símbolo + tagline na porta dianteira, grafismo de U em contorno numa das 5 cores vibrantes, selo SomosCoop vinho na lateral traseira. |
+| Redes sociais (cards) | Foto à esquerda (~70%); à direita, duas formas empilhadas: uma vinho ou branca com logotipo/símbolo e uma vibrante com "O nosso **sorriso** é único." em vinho. |
+| Stories | Moldura de linhas finas arredondadas (lima e goiaba), degradê para vinho na base, logotipo branco + símbolo vibrante no canto inferior direito. |
+| Bandeira | Vinho com padronagem tom sobre tom no topo e na base, logotipo branco + símbolo roxo + nome da Singular. |
+
+Peças que no brand book aparecem sem o selo (crachá, fachada, recepção, sinalização, cards, stories, bandeira) devem recebê-lo num canto ao serem produzidas: a regra é "todas as expressões da marca".
+
+---
+<!-- arquivo: brandbook/06-linguagem-verbal.md -->
+
+# Linguagem Verbal
+
+O tom de voz faz a marca transmitir suas qualidades e valores pela linguagem; quando é consistente, o público reconhece a Uniodonto mesmo sem ver a marca.
+
+## Como falamos com as pessoas
+
+**Confiável, cuidadoso, acolhedor, simples, alegre, experiente, convidativo e familiar.**
+
+O approach é simples e acolhedor, sem nunca perder a alegria do propósito. Com cada público mantemos uma linguagem própria, mas sempre com **acolhimento, transparência, simplicidade e confiança**.
+
+| Público | Como falamos | Frase-síntese |
+| --- | --- | --- |
+| Consumidor final | Leve, simples e convidativa; positiva e dinâmica. Prevenção não é chateação — é o que torna a vida leve. Dividimos conhecimento nas redes. | "O seu sorriso pode mudar o dia!" |
+| Empresas e corretores | Ágil e descomplicada; qualidade do início ao fim, começando na contratação de um plano que faça sentido. | "Buscamos o equilíbrio entre o acolhimento e a eficiência." · "Tem sempre um plano Uniodonto especial para você." |
+| Dentistas cooperados | Transparente e horizontal: somos uma rede, uma família; valorizamos a dedicação de cada cooperado. | "Somos dentistas e isso é o que fazemos de melhor!" |
+| Comunidade | Humana, empática, plural e diversa; simples e clara de norte a sul. | "Somos muitos, somos um." |
+
+## Pessoa verbal
+
+- **Primeira pessoa do plural (nós)** — para aproximar o público do conteúdo e do espírito cooperativista.
+- **Terceira pessoa do singular (ela, a Uniodonto)** — para afirmar a marca como experiente e presente no mercado.
+
+## Tipografia na escrita
+
+- Maiúscula só na primeira letra das palavras, restante em minúsculas — comunicação simples e agregadora, equilibrando os arquétipos prestativo e inocente.
+- Não use títulos muito grandes nem tudo em maiúsculas: dilui a sensação simples e convidativa.
+- Use só as fontes aprovadas.
+
+## Vocabulário
+
+O otimismo aparece em palavras como: **Sorriso · Alegria · Felicidade · Tranquilidade · Cuidado · Leveza · Bem-estar · Saudável · Simplicidade · Único**.
+
+A alegria e o cuidado com a saúde precisam estar presentes: na Uniodonto, ninguém precisa de motivos para sorrir. Mantenha também as palavras que o público reconhece do universo dos dentistas.
+
+## Antes → depois
+
+| Público | Comunicação antiga | Nova forma |
+| --- | --- | --- |
+| Tagline | "Garanta o sorriso de quem você ama." / "O principal objetivo da vida é sorrir." / "Reconquiste seu sorriso e sua autoestima com a Uniodonto." | "Uniodonto, o nosso sorriso é único." |
+| Consumidor final | "Sempre um dentista perto de você." | "Onde você estiver, estaremos sempre perto!" |
+| Consumidor final | "Simplesmente porque a SAÚDE começa pela boca." | "Uma vida saudável começa com um sorriso." |
+| Consumidor final | "Com os dentes e gengivas saudáveis, você se torna especial." | "Você merece um sorriso saudável porque você é especial." |
+| Empresas | "A Uniodonto Rio é uma operadora de planos odontológicos." | "Somos uma operadora de planos odontológicos e uma rede de dentistas especializados." |
+| Empresas | "Contrate já." | "Venha para a Uniodonto!" |
+| Empresas | "Sua empresa já pode garantir o melhor aos seus colaboradores." | "Com a Uniodonto, sua empresa e seus colaboradores estarão sempre em boas mãos!" |
+| Cooperados | "Serviços e informações úteis à Uniodonto Rio e seus cooperados." | "Aqui você encontra tudo o que precisa saber sobre a Uniodonto Rio e seus cooperados." |
+| Cooperados | "Seja nosso cooperado." | "Venha ser cooperado Uniodonto." |
+| Cooperados | "Não há nenhuma informação sobre por que ser um cooperado Uniodonto." | "Quais as vantagens de ser um cooperado Uniodonto?" |
+
+As taglines antigas saem de circulação: a tagline é uma só em todo o Brasil, para que o público se reconheça na Rede Uniodonto onde estiver.
+
+---
+<!-- arquivo: guidelines/logo.md -->
+
+---
+id: logo
+name: Marca Uniodonto
+category: brand
+version: 1.0.0
+---
+
+# Marca Uniodonto
+
+## Versões
+
+- **Positiva institucional** — logotipo Vinho-Escuro sobre fundos claros. Preferencial para materiais institucionais.
+- **Negativa institucional** — logotipo branco sobre fundos escuros (variações de vinho).
+- **Positiva não-institucional** — logotipo Vinho-Escuro com símbolo em cor da paleta complementar. Campanhas e peças alegres.
+
+## Cores do símbolo
+
+O símbolo pode assumir: Vinho-Escuro (institucional) ou qualquer cor da paleta complementar (Roxo, Pêssego, Ciano, Lima, Goiaba) em contextos não-institucionais.
+
+## Área de proteção
+
+Distância mínima livre ao redor da marca = altura do símbolo "U" (h). Nenhum elemento gráfico, texto ou limite de documento pode invadir essa área.
+
+## Tagline
+
+*O nosso sorriso é único.* — Georama Itálico (ou Bold Itálico para destaque), espaçamento 40pt.
+
+Posicionamento:
+- Vertical: alinhada à esquerda, largura do logotipo, distância "h" abaixo.
+- Horizontal: ao lado do símbolo, respeitando largura do logotipo.
+
+## SomosCoop
+
+A marca SomosCoop deve aparecer em **todas** as aplicações Uniodonto, como endosso.
+
+- Tamanho: máximo 3/4 da largura do logotipo Uniodonto.
+- Posição: cantos superiores ou inferiores (nunca central).
+- Cor: branco ou qualquer cor da paleta Uniodonto.
+
+## Singulares
+
+Símbolo e nome da Singular em **Roxo Uniodonto** (#BF9CFF). Evitar juntar símbolo ao logotipo — mantê-los próximos mas separados.
+
+## Não faça
+
+- ❌ Alterar proporções, rotacionar ou distorcer.
+- ❌ Aplicar efeitos (sombra, outline, gradiente).
+- ❌ Símbolo em cor que não pertença à paleta oficial.
+- ❌ Invadir a área de proteção com qualquer elemento.
+
+---
+<!-- arquivo: guidelines/voice.md -->
+
+---
+id: voice
+name: Tom de Voz
+category: brand
+version: 1.0.0
+---
+
+# Tom de Voz Uniodonto
+
+**Pilares**: Confiável · Cuidadoso · Acolhedor · Simples · Alegre · Experiente · Convidativo · Familiar.
+
+## Regras de escrita
+
+1. **Title Case nos títulos** — primeira letra maiúscula, nunca palavra inteira em caixa alta.
+2. **Frases curtas e diretas** — máximo 20 palavras por frase em comunicação de massa.
+3. **Voz ativa e pessoal** — "Cuidamos do seu sorriso", não "O sorriso é cuidado".
+4. **Evitar jargão técnico** para o beneficiário final. Manter com cooperados.
+5. **Tagline oficial**: *Uniodonto. O nosso sorriso é único.* — nunca alterar.
+
+## Por público
+
+| Público       | Tom                                   | Exemplo                                            |
+| ------------- | ------------------------------------- | -------------------------------------------------- |
+| Beneficiário  | Leve, convidativo, otimista           | "Seu sorriso pode mudar o dia!"                   |
+| Empresas      | Ágil, descomplicado, eficiente        | "Tem sempre um plano Uniodonto especial para você." |
+| Cooperados    | Horizontal, transparente, familiar    | "Somos dentistas e isso é o que fazemos de melhor." |
+| Comunidade    | Plural, empático, brasileiro          | "Somos muitos, somos um."                         |
+
+## Faça
+
+- ✅ "Reconquiste seu sorriso e sua autoestima com a Uniodonto."
+- ✅ "Prevenir é cuidar também da sua alegria."
+- ✅ Numerais por extenso até dez; algarismos acima.
+
+## Não faça
+
+- ❌ "RECONQUISTE SEU SORRISO!!!" (caixa alta + exclamações).
+- ❌ "Preferencialmente procure..." — substituir por regra objetiva.
+- ❌ Gírias datadas ou anglicismos desnecessários.
+
+---
+<!-- arquivo: components/AcessoRapido/README.md -->
+
+# AcessoRapido
+
+Grade de atalhos do portal Uniodonto (estudo de componentes digitais do brand book): cards squircle com ícone simplificado, fio e rótulo em duas linhas.
+
+## O que o consumidor fornece
+
+- Ícones oficiais de `assets/Icones` em `<img>` (cor embutida) e o rótulo de cada serviço: primeira palavra em `<b>` (bold itálico), restante em itálico regular.
+- O destino de cada card (link).
+
+## Regras
+
+- `quick-grid` com `quick-card`; o serviço em foco ou mais procurado recebe `active` (vinho sólido, texto branco).
+- Ícone simplificado sempre acompanhado do descritivo — nunca ícone sozinho.
+- Serviços do brand book: Buscar Dentista, Contratar Plano, 2ª Via de Boleto, Imposto de Renda, Portal do Cliente, Portal Empresa, Aprovação Online, Plantão 24h.
+- Os ícones simplificados são bicolores (acento vibrante + traço vinho) e já vêm coloridos nos arquivos oficiais; não recolora. No card ativo (fundo vinho) o ícone fica numa placa branca arredondada para manter o traço vinho visível.
+- O acento ciano sobre fundo claro tem pouco contraste: mantenha sempre o descritivo ao lado.
+
+---
+<!-- arquivo: components/AssinaturaSingular/README.md -->
+
+# AssinaturaSingular
+
+Gerador da assinatura de cada Singular a partir do template oficial (`assets/Singulares`): símbolo e logotipo em curvas, nome da Singular como texto editável em Georama Itálico.
+
+## O que o consumidor fornece
+
+- O nome da Singular, em caixa alta e baixa ("Rio Grande do Norte", "Vale do Paraíba").
+- A versão: horizontal distante A/B (preferencial), horizontal próxima A/B, vertical distante ou vertical próxima; positiva (fundo branco) ou negativa (fundo vinho).
+
+## Como funciona
+
+- O preview carrega o SVG do template, troca o `<text>` pelo nome digitado (um único `tspan`, entreletra .025em), recalcula o `viewBox` pela caixa real do desenho e permite baixar o resultado.
+- Em código: faça o mesmo — `fetch` do arquivo, substitua o conteúdo do `<text>`, ajuste o `viewBox` com `getBBox()`. Carregue Georama itálico (`tokens.css`) antes de medir.
+- Para gráfica ou fornecedor, converta o nome em curvas depois de gerar (o SVG não embute a fonte).
+
+## Regras
+
+- `uni-roxo` é a cor oficial das Singulares: símbolo e nome em roxo; logotipo em vinho (ou branco na negativa).
+- Nome em Georama Itálico, caixa alta e baixa, entreletra 25, com a altura do "U".
+- Prefira as versões distantes; evite juntar símbolo ao logotipo para não criar excesso de elementos.
+- Espaços: 1/2 u ao lado, 3/4 u abaixo. Área de proteção = altura do "U".
+- A Singular também assina com o selo SomosCoop (`AssinaturaSomosCoop`), em `uni-roxo` no timbrado.
+
+## Não faça
+
+- Não mude fonte, cor, inclinação ou posição do nome; não abrevie com siglas que não sejam o nome oficial da Singular.
+
+---
+<!-- arquivo: components/AssinaturaSomosCoop/README.md -->
+
+# AssinaturaSomosCoop
+
+Regras de aplicação do selo SomosCoop, que assina todas as expressões da marca Uniodonto como endosso do cooperativismo.
+
+## O que o consumidor fornece
+
+- O selo oficial de `assets/SomosCoop` em `<img>`: `somoscoop-vinho.svg` sobre claro, `somoscoop-negativo.svg` sobre vinho, `somoscoop-roxo.svg` em Singulares.
+- A marca Uniodonto de `assets/Logos`; meça o selo contra `logotipo-vinho.svg` (só a palavra).
+- `coop-slot` fica só para rascunho de layout, nunca em peça final.
+
+## Regras
+
+- Tamanho: no máximo 3/4 da largura do logotipo (a palavra "uniodonto", sem símbolo); na prática, de 1/3 a 3/5.
+- Posição: canto superior ou inferior, oposto à marca Uniodonto; nunca centralizado; em peças com capa e verso, no verso.
+- Cor: branco ou qualquer cor da paleta (`uni-vinho-escuro`, `uni-vinho-medio`, `uni-vinho-claro`, `uni-roxo`, `uni-pessego`, `uni-ciano`, `uni-lima`, `uni-goiaba`), com contraste sobre o fundo.
+- Assinatura conjunta (só quando não cabe a distanciada): vertical com o selo abaixo, alinhado à esquerda, a 1/2 U; horizontal com o selo à direita do símbolo, a 1/2 U, alinhado pela base.
+
+## Não faça
+
+- Não redesenhe nem aproxime o selo.
+- Não dê ao selo destaque igual ou maior que a marca Uniodonto.
+- Não omita o selo para "limpar" a peça.
+
+---
+<!-- arquivo: components/Badge/README.md -->
+
+---
+id: badge
+name: Badge
+status: stable
+version: 1.0.0
+category: display
+tokens:
+  - colors.complementary
+  - spacing.radius.full
+  - typography.scale.caption
+---
+
+# Badge
+
+Rótulo curto para status, categorias ou destaque de dados.
+
+## Variantes
+
+| Tom        | Fundo                    | Texto     | Uso                          |
+| ---------- | ------------------------ | --------- | ---------------------------- |
+| neutral    | `surface.muted`          | vinho     | Categoria, tag genérica      |
+| brand      | `vinhoEscuro`            | branco    | Institucional                |
+| success    | `feedback.success` 12%   | success   | Plano ativo, pagamento ok    |
+| warning    | `feedback.warning` 12%   | warning   | Pendência                    |
+| roxo       | `roxo` 30%               | vinhoUltra| Singulares                   |
+| goiaba     | `goiaba` 30%             | vinhoUltra| Novidade, campanha           |
+| lima       | `lima` 40%               | vinhoUltra| Prevenção, saúde             |
+| ciano      | `ciano` 35%              | vinhoUltra| Conteúdo, informativo        |
+
+## Regras
+
+- Raio `full` (pill). Altura 24px (sm) ou 28px (md).
+- Texto em `caption` com Title Case — nunca CAIXA ALTA.
+- Ícone opcional à esquerda, 14px.
+
+## API
+
+```tsx
+<Badge tone="roxo" size="sm">Singular</Badge>
+```
+
+---
+<!-- arquivo: components/Button/README.md -->
+
+---
+id: button
+name: Button
+status: stable
+version: 1.0.0
+category: action
+radixPrimitive: null
+shadcnBase: button
+tokens:
+  - colors.institutional.vinhoEscuro
+  - colors.complementary.goiaba
+  - colors.semantic.text
+  - spacing.radius.md
+  - spacing.shadow.sm
+  - typography.scale.body-md
+a11y:
+  - "Deve ter contraste mínimo AA contra fundo."
+  - "Estado :focus-visible obrigatório com shadow.focus (roxo)."
+  - "Área mínima de clique: 44x44px."
+---
+
+# Button
+
+Botão de ação. Expressa o tom acolhedor e alegre da Uniodonto com cantos suaves e estados claros.
+
+## Regras
+
+- **Primário**: Vinho-Escuro. Um por tela. Usar para ação principal (contratar, confirmar, entrar).
+- **Secundário**: Outline vinho. Ações alternativas.
+- **Terciário**: Ghost, sem borda. Ações de baixa ênfase (cancelar, voltar).
+- **Destaque (accent)**: Goiaba. Usar apenas em contextos não-institucionais (campanhas, landing alegre).
+- Nunca usar dois primários adjacentes.
+- Texto em Title Case — nunca MAIÚSCULAS (viola o tom de voz).
+
+## Variantes
+
+| Variante   | Uso                              | Token de fundo                       |
+| ---------- | -------------------------------- | ------------------------------------ |
+| primary    | CTA principal                    | `colors.institutional.vinhoEscuro`   |
+| secondary  | CTA alternativo                  | transparente + borda vinho           |
+| tertiary   | Baixa ênfase                     | transparente                         |
+| accent     | Não-institucional/campanha       | `colors.complementary.goiaba`        |
+| danger     | Ações destrutivas                | `colors.semantic.feedback.danger`    |
+
+## Tamanhos
+
+| Size | Altura | Padding X | Fonte |
+| ---- | ------ | --------- | ----- |
+| sm   | 36px   | 12px      | 14px  |
+| md   | 44px   | 20px      | 16px  |
+| lg   | 52px   | 28px      | 18px  |
+
+## Estados
+
+`default` · `hover` (escurece 8%) · `active` (escurece 14%) · `focus-visible` (ring roxo) · `disabled` (40% opacity, cursor not-allowed) · `loading` (spinner substitui ícone).
+
+## API (React + shadcn/radix)
+
+```tsx
+<Button variant="primary" size="md" loading={false} leftIcon={<Icon/>}>
+  Contratar plano
+</Button>
+```
+
+## Não faça
+
+- ❌ Botão primário com cor goiaba em material institucional.
+- ❌ Texto em CAIXA ALTA.
+- ❌ Raio pill (`full`) em botão retangular padrão — reservado para chips.
+
+---
+<!-- arquivo: components/Card/README.md -->
+
+---
+id: card
+name: Card
+status: stable
+version: 1.0.0
+category: container
+shadcnBase: card
+tokens:
+  - colors.semantic.surface.default
+  - colors.semantic.surface.subtle
+  - spacing.radius.lg
+  - spacing.shadow.sm
+---
+
+# Card
+
+Contêiner de conteúdo agrupado. Três variantes cobrem 90% dos usos na Uniodonto.
+
+## Variantes
+
+### `plano` — Card de plano odontológico
+Fundo branco, borda sutil, accent superior em cor complementar (roxo padrão). Título do plano em `heading-3`, preço em `display-md`, lista de benefícios.
+
+### `cooperado` — Card de dentista cooperado
+Foto recortada em círculo, nome em `heading-3`, especialidades em `caption`, CTA "Agendar".
+
+### `beneficio` — Card de benefício/feature
+Ícone grande em círculo colorido (paleta complementar), título `heading-3`, descrição `body-md`.
+
+## Regras
+
+- Raio `lg` (16px) padrão. `xl` apenas em cards hero.
+- Shadow `sm` em estado default; `md` em hover quando clicável.
+- Padding interno mínimo: 24px (`spacing.6`).
+- Em fundos escuros, usar `surface.brand` com texto `onBrand`.
+
+## API
+
+```tsx
+<Card variant="plano" tone="roxo">
+  <Card.Header>...</Card.Header>
+  <Card.Body>...</Card.Body>
+  <Card.Footer>...</Card.Footer>
+</Card>
+```
+
+---
+<!-- arquivo: components/Checkbox/README.md -->
+
+---
+id: checkbox
+name: Checkbox
+version: 1.0.0
+radixPrimitive: Checkbox
+shadcnBase: checkbox
+---
+
+# Checkbox
+
+Caixa de seleção booleana ou múltipla.
+
+## Regras
+
+- 20x20px (md). Raio `sm` (6px).
+- Não marcado: borda `border.default`, fundo branco.
+- Marcado: fundo `vinhoEscuro`, check branco.
+- Foco: ring roxo (`shadow.focus`).
+- Sempre acompanhado de label clicável.
+
+```tsx
+<Checkbox id="termos" /> <label htmlFor="termos">Li e aceito os termos</label>
+```
+
+---
+<!-- arquivo: components/Input/README.md -->
+
+---
+id: input
+name: Input
+status: stable
+version: 1.0.0
+category: form
+radixPrimitive: null
+shadcnBase: input
+tokens:
+  - colors.institutional.vinhoEscuro
+  - colors.semantic.border.default
+  - colors.semantic.feedback.danger
+  - spacing.radius.md
+a11y:
+  - "Sempre usar <label> associado via htmlFor."
+  - "Mensagens de erro usam aria-describedby."
+  - "Estado inválido usa aria-invalid=true."
+---
+
+# Input
+
+Campo de entrada de texto. Foco em clareza e simplicidade — o beneficiário deve preencher sem fricção.
+
+## Anatomia
+
+`[label]` → `[campo com placeholder]` → `[helper ou erro]`
+
+## Regras
+
+- Label sempre visível (nunca só placeholder).
+- Placeholder em tom `text.muted`, frase orientando formato ("Ex.: 000.000.000-00").
+- Borda padrão 1px `border.default`; no foco, borda vinho + shadow.focus roxo.
+- Erro: borda `feedback.danger` + ícone + mensagem abaixo.
+
+## Tamanhos
+
+| Size | Altura | Fonte |
+| ---- | ------ | ----- |
+| sm   | 36px   | 14px  |
+| md   | 44px   | 16px  |
+| lg   | 52px   | 18px  |
+
+## Estados
+
+`default` · `hover` · `focus` · `filled` · `invalid` · `disabled` · `readonly`.
+
+## API
+
+```tsx
+<Field label="CPF" error={errors.cpf} hint="Apenas números">
+  <Input name="cpf" placeholder="000.000.000-00" />
+</Field>
+```
+
+## Não faça
+
+- ❌ Usar só placeholder como rótulo.
+- ❌ Mensagem de erro genérica ("Campo inválido") — seja específico.
+
+---
+<!-- arquivo: components/PillTag/README.md -->
+
+# PillTag
+
+Etiqueta em pílula do brand book: contorno vinho de 1px, cantos totalmente arredondados, texto vinho em bold itálico.
+
+## Uso
+
+- `pill-tag` para rotular seções, categorias e exemplos ("Cor oficial marca", "Proporção").
+- `pill-tag solid` (vinho sólido, texto branco) para nomes de cor e destaques institucionais.
+- Texto curto, em caixa alta e baixa. Para status use `badge`.
+
+---
+<!-- arquivo: components/Select/README.md -->
+
+---
+id: select
+name: Select
+status: stable
+version: 1.0.0
+category: form
+radixPrimitive: Select
+shadcnBase: select
+---
+
+# Select
+
+Dropdown de seleção. Usa Radix UI Select por acessibilidade.
+
+## Regras
+
+- Trigger idêntico ao Input (mesma altura, raio, borda).
+- Chevron 16px à direita em `text.muted`.
+- Conteúdo do popover: raio `md`, shadow `md`, padding 4px.
+- Item selecionado: check à esquerda + fundo `brandSoft`.
+- Item em hover: fundo `surface.muted`.
+
+## API
+
+```tsx
+<Select value={v} onValueChange={setV}>
+  <Select.Trigger><Select.Value placeholder="Escolha" /></Select.Trigger>
+  <Select.Content>
+    <Select.Item value="basico">Plano Básico</Select.Item>
+    <Select.Item value="premium">Plano Premium</Select.Item>
+  </Select.Content>
+</Select>
+```
+
+---
+<!-- arquivo: components/Submarcas/README.md -->
+
+# Submarcas
+
+Vitrine das assinaturas das Soluções Uniodonto (`assets/Submarcas`): Banco U, Dental U, Mobile, RXScan, Sig U, UCX, U Fast, U Hub e U Rede, cada uma em positivo e negativo.
+
+## Regras
+
+- Use sempre o arquivo oficial (`<submarca>_positivo.svg` / `_negativo.svg`); nunca redesenhe nem recolora.
+- Positivo em fundo claro (`n-0`, `bg`); negativo sobre `uni-vinho-escuro`.
+- As submarcas seguem a arquitetura monolítica: mesmas regras de área de proteção, tipografia e paleta da marca-mãe, e assinatura com o selo SomosCoop.
+- Os positivos de Sig U (ciano), U Fast e U Hub (goiaba) e U Rede (roxo) são só na cor vibrante: em fundo branco o contraste é baixo — prefira fundo vinho ou a versão negativa em peças pequenas.
+
+---
+<!-- arquivo: components/Tabs/README.md -->
+
+---
+id: tabs
+name: Tabs
+version: 1.0.0
+radixPrimitive: Tabs
+shadcnBase: tabs
+---
+
+# Tabs
+
+Navegação entre painéis relacionados.
+
+## Regras
+
+- Trigger ativo: sublinhado vinho 2px + texto `vinhoEscuro`.
+- Trigger inativo: texto `text.muted`.
+- Hover: texto `vinhoEscuro` sem sublinhado.
+- Espaçamento entre triggers: 32px (`spacing.8`).
+
+```tsx
+<Tabs defaultValue="visao">
+  <Tabs.List>
+    <Tabs.Trigger value="visao">Visão geral</Tabs.Trigger>
+    <Tabs.Trigger value="cobertura">Cobertura</Tabs.Trigger>
+  </Tabs.List>
+  <Tabs.Content value="visao">...</Tabs.Content>
+</Tabs>
+```
+
+---
+<!-- arquivo: components/TarjaANS/README.md -->
+
+# TarjaANS
+
+Tarja regulatória obrigatória nas peças da operadora: registro ANS e responsável técnico.
+
+## O que o consumidor fornece
+
+- Número de registro ANS vigente (hoje "ANS - nº34.012-0") e os CROs do responsável técnico e da operadora, atualizados conforme as regras da ANS e dos órgãos de classe (CRO, CFO) no período.
+
+## Uso
+
+- `ans-tarja` com `ans-reg` (retângulo preto, borda branca, texto branco) e uma ou duas linhas `ans-rt`.
+- `vertical` para a borda lateral da peça (posição padrão do brand book); `on-dark` sobre vinho.
+- Nunca deixe placeholders ("CRO ?????") numa peça final.
+
+---
+<!-- arquivo: assets/Formas/README.md -->
+
+# Formas
+
+Seis formas da marca (`f01`–`f06`): pílula larga, retângulos arredondados e o "U" sólido, todas em vinho (#A5156B). Use como blocos de fundo e moldura de fotos em composições; nunca com texto sobreposto sem contraste de 4,5:1.
+
+---
+<!-- arquivo: assets/Icones/README.md -->
+
+# Ícones
+
+## Site (Figma ICONES-SITE)
+
+Conjunto atual dos sites, exportado do Figma (cor embutida): `icone-site-portal-do-cliente`, `icone-site-portal-do-rh`, `icone-site-encontre-um-dentista`, `icone-site-cadastre-sua-corretora`, `icone-site-contrate-um-plano`, `icone-site-plantao-uniodonto`, `icone-site-materiais-de-marketing`, mais os de apoio `icone-site-cartao`, `icone-site-seguranca`, `icone-site-alvo` e `icone-site-premio` (todos `.svg`).
+
+- Os quatro de apoio (cartão, segurança, alvo, prêmio) vêm de uma biblioteca genérica no Figma, não do desenho da marca — use só onde não houver ícone próprio.
+
+## Simplificados (Drive)
+
+Ícones simplificados dos sites Uniodonto (arquivos oficiais, cor embutida): `icone-buscar-dentista`, `icone-contrate-seu-plano`, `icone-boleto`, `icone-imposto-de-renda`, `icone-portal-do-cliente`, `icone-portal-da-empresa`, `icone-aprovacao-online`, `icone-plantao`, `icone-plantao-24h`, `icone-curriculo` e `icone-ativo-10` (todos `.svg`).
+
+## Regras
+
+- Bicolores: acento numa cor vibrante (`uni-goiaba`, `uni-ciano`, `uni-pessego`) com traço vinho. Use em `<img>`, mínimo 40px, **sempre acompanhados do descritivo** (`AcessoRapido`).
+- Os arquivos trazem alguns tons exportados levemente diferentes dos tokens (ex.: #a30069, #820d57, #69c9df); são os originais — não recolora.
+- A família completa (destaque, serviços, documentos) está no arquivo-fonte `Uniodonto_icones.ai` da pasta de ícones da marca.
+
+---
+<!-- arquivo: assets/Logos/README.md -->
+
+# Logos
+
+Arquivos oficiais da marca Uniodonto (pasta de assets da marca no Drive). Todos os SVG trazem a cor embutida e funcionam direto num `<img>`.
+
+- **Horizontal (logotipo + símbolo à direita):** `logo-horizontal-vinho.svg` (institucional, preferencial) e as versões não institucionais com símbolo `roxo`, `ciano`, `goiaba`, `pessego`. Sobre vinho: `logo-horizontal-negativo-branco.svg` (institucional) e `-negativo-roxo`, `-ciano`, `-goiaba`, `-pessego` (logotipo branco, símbolo colorido). `-branco-alt` é uma segunda exportação da versão branca.
+- **Vertical (símbolo centralizado acima):** `logo-vertical-vinho.svg`, `-roxo`, `-ciano`, `-goiaba`, `-pessego`; sobre vinho `logo-vertical-negativo-branco.svg` e `-roxo`, `-ciano`, `-goiaba`, `-pessego`, `-lima`.
+- **Só o logotipo (sem símbolo):** `logotipo-vinho.svg` e `logotipo-branco.svg` — use para a composição distanciada e para medir o selo SomosCoop (máx. 3/4 desta largura).
+- `logo-eventos-positivo.svg` / `logo-eventos-negativo.svg`: versão para eventos e patrocínios (o negativo tem fundo vinho próprio). PNG para e-mail: `logo_vinho_email.png`.
+- Símbolo colorido só em peças não institucionais; avatar sempre vinho. Área de proteção = altura do "U"; nunca distorça, rotacione ou aplique efeitos.
+
+---
+<!-- arquivo: assets/Padronagens/README.md -->
+
+# Padronagens
+
+Padronagens oficiais: `p01` modular branca, `p02` modular colorida (arcos "U" nas cores complementares), `p03` circular e `p04` circular colorida. Use como fundo de apoio em peças de campanha e capas; branca sobre `uni-vinho-escuro`, colorida sobre `n-0`.
+
+---
+<!-- arquivo: assets/Paleta/README.md -->
+
+# Paleta
+
+`paleta-oficial.svg` — prancha da paleta oficial (institucional, apoio e complementares) com valores de referência. Os valores digitais de cada cor estão em tokens.json.
+
+---
+<!-- arquivo: assets/Simbolo/README.md -->
+
+# Símbolo
+
+Símbolo de comando "U" (arquivos oficiais, cor embutida). `simbolo-vinho.svg` é o institucional (avatar, verso de papelaria); `simbolo-roxo` é o das Singulares; `-ciano`, `-goiaba`, `-pessego` são não institucionais. Sobre vinho: `simbolo-negativo-branco.svg` (institucional) e `-roxo`, `-ciano`, `-goiaba`, `-pessego`, `-lima`.
+
+Nunca aplique um símbolo de cor vibrante sobre fundo de outra cor vibrante — sobre cor, use o vinho.
+
+---
+<!-- arquivo: assets/Singulares/README.md -->
+
+# Singulares
+
+Template oficial da assinatura das Singulares. Símbolo e logotipo em curvas; **o nome da Singular é texto editável** (`<text>` em Georama Itálico), com "Rio Grande do Norte" como exemplo. Use o componente `AssinaturaSingular` para digitar o nome e baixar o SVG pronto.
+
+| Arquivo | Composição |
+| --- | --- |
+| `horizontal-distante-A-*` / `-B-*` | Logotipo + nome, símbolo afastado (preferencial) |
+| `horizontal-proxima-A-*` / `-B-*` | Logotipo + símbolo + nome juntos |
+| `vertical-distante-*` / `vertical-proxima-*` | Composições verticais |
+| `horizontal-proxima-B-branca-extra` | Composição toda em branco |
+
+`-positiva` (logotipo #810e56 `uni-vinho-escuro`, símbolo e nome #bf9cff) para fundo claro; `-negativa` (logotipo branco, símbolo e nome #bf9cff) para fundo vinho.
+
+- A fonte não está embutida: quem abrir o SVG precisa de Georama Itálico instalada; para gráfica, converta o nome em curvas.
+- Ao trocar o nome, recalcule o `viewBox` (o nome muda de largura). Entreletra 25, caixa alta e baixa.
+
+---
+<!-- arquivo: assets/SomosCoop/README.md -->
+
+# SomosCoop
+
+Selo do movimento SomosCoop, que assina todas as expressões da marca Uniodonto (regras em Assinatura SomosCoop). Versão horizontal (em linha), tinta única, cor embutida — use em `<img>`.
+
+- `somoscoop-vinho.svg` — `uni-vinho-escuro`, preferencial sobre fundos claros.
+- `somoscoop-roxo.svg` — `uni-roxo`, Singulares e peças não institucionais claras.
+- `somoscoop-negativo.svg` — branco (#f6f6f6), sobre vinho e fotos escuras.
+- `somoscoop-positivo.svg` — cor original do movimento (#127568), para peças do próprio sistema OCB/cooperativista; nas peças Uniodonto prefira as cores da paleta.
+
+As versões vinho e roxo são o arquivo oficial com a tinta trocada, como o brand book permite. Versões empilhada (vertical), colorida e com tag existem só em AI/PDF/PNG na pasta "[16] Marca SomosCoop" do Drive da marca. Nunca redesenhe ou recomponha o selo.
+
+---
+<!-- arquivo: assets/Submarcas/README.md -->
+
+# Submarcas
+
+Assinaturas oficiais das Soluções Uniodonto, em SVG com cor embutida (funcionam em `<img>`).
+
+| Submarca | Positivo | Negativo |
+| --- | --- | --- |
+| Banco U | `bancou_positivo.svg` (#810e56) | `bancou_negativo.svg` (branco + #e0ff7a) |
+| Dental U | `dental_positivo.svg` (#810e56) | `dental_negativo.svg` (branco + #bf9cff) |
+| Mobile | `mobile_positivo.svg` (#550039 + #a60069) | `mobile_negativo.svg` (branco) |
+| RXScan | `rxscan_positivo.svg` (#810e56) | `rxscan_negativo.svg` (branco + #60ebff) |
+| Sig U | `sigu_positivo.svg` (#60ebff) | `sigu_negativo.svg` (branco) |
+| UCX | `ucx_positivo.svg` (#810e56) | `ucx_negativo.svg` (#e0ff7a) |
+| U Fast | `ufast_positivo.svg` (#ff637e) | `ufast_negativo.svg` (branco) |
+| U Hub | `uhub_positivo.svg` (#ff637e) | `uhub_negativo.svg` (branco) |
+| U Rede | `urede_positivo.svg` (#bf9cff) | `urede_negativo.svg` (branco) |
+
+- Positivo em fundo claro; negativo sobre vinho. Vitrine e regras em `Submarcas` (componente).
+- Alguns tons exportados diferem dos tokens (ex.: #ff637e, #60ebff, #e0ff7a, #550039); são os originais — não recolora.
+
+---
+<!-- arquivo: docs/tokens.md -->
+
+# Tokens
+
+Every token of the system, a section per group: Surfaces — 3 tokens; Text — 5 tokens; Borders and rings — 3 tokens; Palette ramps and brand — 37 tokens; Type styles, families, font files; Spacing — 11 tokens; Radius — 8 tokens; Shadow — 10 tokens.
+
+## Color · Surfaces
+
+### Use
+
+```css
+/* any surface that loads tokens.css or components/bundle.css */
+color: var(--surface);
+/* a surface with no stylesheet (a slide): the light value */
+```
+
+### Tokens (3)
+
+| token | light | usage |
+| --- | --- | --- |
+| `surface` | #ffffff | Cards, inputs, botão secundário. |
+| `surface-muted` | #f3f7fa | Hover de botões tertiary/secondary, badge `neutral`, input desabilitado. |
+| `surface-inset` | #e8eef3 | Active do botão secundário, áreas rebaixadas. |
+
+## Color · Text
+
+### Use
+
+```css
+/* any surface that loads tokens.css or components/bundle.css */
+color: var(--text);
+/* a surface with no stylesheet (a slide): the light value */
+```
+
+### Tokens (5)
+
+| token | light | usage |
+| --- | --- | --- |
+| `text` | #232c34 | Texto corrido sobre `bg` e `surface` (13:1+). |
+| `text-strong` | #550039 | Títulos, labels e texto de ênfase sobre `bg` e `surface` (13,5:1). |
+| `text-muted` | #6b7c8a | Texto secundário, hints, abas inativas sobre `surface` (4,3:1) e `bg` (4,0:1 — abaixo de 4,5:1; valor da fonte mantido, use só em 14px+ semibold ou 24px+ sobre `bg`). |
+| `text-subtle` | #98a9b7 | Placeholder e texto desabilitado sobre `surface` — 2,4:1, abaixo do mínimo de texto; valor da fonte mantido. |
+| `text-on-brand` | #ffffff | Texto sobre `uni-vinho-escuro` (9,9:1) e demais vinhos. |
+
+## Color · Borders and rings
+
+### Use
+
+```css
+/* any surface that loads tokens.css or components/bundle.css */
+color: var(--border);
+/* a surface with no stylesheet (a slide): the light value */
+```
+
+### Tokens (3)
+
+| token | light | usage |
+| --- | --- | --- |
+| `border` | #e8eef3 | Divisórias, borda de card, lista de abas. |
+| `border-strong` | #dbe4eb | Borda de controles (input, botão secundário). |
+
+**Interaction states** (same roles, suffixed):
+
+| token | light |
+| --- | --- |
+| `border-focus` | #bf9cff |
+
+## Color · Palette ramps and brand
+
+### Use
+
+```css
+/* any surface that loads tokens.css or components/bundle.css */
+color: var(--uni-vinho-escuro);
+/* a surface with no stylesheet (a slide): the light value */
+```
+
+### Tokens (37)
+
+| token | light | usage |
+| --- | --- | --- |
+| `uni-vinho-escuro` | #810e56 | Vinho-Escuro Uniodonto (Pantone 242 C) — cor oficial e obrigatória da marca: logotipo institucional, títulos, CTA primário (`btn primary`), sublinhado da aba ativa. Branco sobre ela: 9,9:1; sobre `n-75`: 9,2:1. |
+| `uni-vinho-medio` | #a60069 | Vinho Médio (Pantone 234 C) — variação tonal; hover do botão primário. Combinar sempre com Vinho-Escuro. |
+| `uni-vinho-ultra` | #550039 | Vinho Ultra (Pantone 229 C) — fundos escuros institucionais, active do primário, texto forte (`text-strong`) e texto sobre cores complementares. |
+| `uni-vinho-claro` | #bc5688 | Vinho-Claro (Pantone 674 C) — acentos suaves e gráficos secundários; não usar como cor de texto. |
+| `uni-preto` | #121212 | Marca monocromática PB — só quando cor é impossível. (tokens/colors.json registra Preto como #111111; o stylesheet usa #121212.) |
+| `uni-roxo` | #bf9cff | Roxo Uniodonto (Pantone 2572 C) — cor oficial das Singulares; anel de foco (`border-focus`, `sh-ring-focus`); badge `roxo`. Contraste 2,2:1 sobre branco: nunca como texto, e o anel de foco fica abaixo de 3:1 (valor da fonte mantido). |
+| `uni-pessego` | #ff9fad | Pêssego Uniodonto (Pantone 1765 C) — acolhimento, campanhas, ilustrações; fundo de apoio, nunca texto. |
+| `uni-ciano` | #60ebff | Ciano Uniodonto (Pantone 310 C) — frescor, conteúdos educativos, elementos digitais; fundo de apoio, nunca texto. |
+| `uni-lima` | #e1ff7b | Lima Uniodonto (Pantone 379 C) — alegria, prevenção; fundo do botão `accent` com texto `uni-vinho-ultra` (13:1). |
+| `uni-goiaba` | #ff637e | Goiaba Uniodonto (Pantone 184 C) — energia, CTAs não-institucionais, campanhas; badge `goiaba`. |
+| `bg` | #f3f7fa | Fundo da página. |
+| `success` | #1f7a4c | Texto/ícone de sucesso sobre `success-bg` (4,7:1) e `surface`. |
+| `success-bg` | #e6f3eb | Fundo do badge `success`. |
+| `warning` | #b45b0e | Texto de pendência sobre `warning-bg` — 4,1:1, abaixo de 4,5:1; valor da fonte mantido. |
+| `warning-bg` | #fbecd8 | Fundo do badge `warning`. |
+| `danger` | #b3261e | Erro, ação destrutiva: texto sobre `danger-bg` (5,4:1) e `surface`; borda de input inválido. |
+| `danger-bg` | #fbe4e2 | Fundo do badge `danger` e hover do botão `danger`. |
+| `info` | #1f6faf | Texto informativo sobre `info-bg` (4,5:1). |
+| `info-bg` | #e2eef8 | Fundo do badge `info`. |
+| `brand-soft` | #f7d9e8 | `surface.brandSoft` de tokens/colors.json — item selecionado do Select. |
+| `campanha-outubro-rosa` | #ff4da6 | Outubro Rosa — uso restrito ao mês 10. |
+| `campanha-novembro-azul` | #1e6fd9 | Novembro Azul — uso restrito ao mês 11. |
+| `campanha-setembro-amarelo` | #f5c518 | Setembro Amarelo — uso restrito ao mês 09. |
+| `campanha-verde-brasil` | #00a859 | Verde Brasil — datas nacionais (09/11). |
+
+| ramp | steps | first → last (light) |
+| --- | --- | --- |
+| `n-*` | 0, 50, 75, 100, 150, 200, 300, 400, 500, 600, 700, 800, 900 | #ffffff → #0b1013 |
+
+## Type
+
+Use the named styles; no literal px.
+
+### Use
+
+```css
+font: var(--text-display-xl);            /* with tokens.css */
+font-family: var(--font-brand);   /* the family alone */
+```
+
+### Styles
+
+| style | CSS | size / line | weight | family | usage |
+| --- | --- | --- | --- | --- | --- |
+| `display-xl` | `.display-xl`, `--text-display-xl` | 80px / 1.05 | 500 | `brand` | Heros, aberturas de campanha |
+| `display-lg` | `.display-lg`, `--text-display-lg` | 64px / 1.1 | 500 | `brand` | Headlines de landing |
+| `display-md` | `.display-md`, `--text-display-md` | 48px / 1.15 | 500 | `brand` | Headlines secundários |
+| `heading-1` | `.heading-1`, `--text-heading-1` | 36px / 1.2 | 600 | `brand` | Título de página |
+| `heading-2` | `.heading-2`, `--text-heading-2` | 28px / 1.25 | 600 | `brand` | Seções |
+| `heading-3` | `.heading-3`, `--text-heading-3` | 22px / 1.3 | 600 | `brand` | Subseções, cards |
+| `heading-4` | `.heading-4`, `--text-heading-4` | 18px / 1.35 | 600 | `brand` | Títulos inline |
+| `body-lg` | `.body-lg`, `--text-body-lg` | 18px / 1.55 | 400 | `brand` | Parágrafos de destaque |
+| `body-md` | `.body-md`, `--text-body-md` | 16px / 1.55 | 400 | `brand` | Texto padrão |
+| `body-sm` | `.body-sm`, `--text-body-sm` | 14px / 1.5 | 400 | `brand` | Legendas, metadados |
+| `caption` | `.caption`, `--text-caption` | 12px / 1.4 | 500 | `brand` | Microcopy, labels |
+| `overline` | `.overline`, `--text-overline` | 11px / 1.4 | 600 | `brand` | Rótulos de seção (Title Case) |
+
+### Families
+
+| family | CSS variable | stack |
+| --- | --- | --- |
+| `brand` | `--font-brand` | `'Georama', 'Inter', system-ui, -apple-system, sans-serif` |
+| `mono` | `--font-mono` | `'JetBrains Mono', ui-monospace, 'SF Mono', monospace` |
+
+### Font files
+
+Fonts: `tokens.css` loads each font from its file, by path.
+
+- **Design canvas:** copy `tokens.css`, `fonts/Georama-VariableFont_wdth_wght.ttf` and `fonts/Georama-Italic-VariableFont_wdth_wght.ttf` to the same paths under the canvas’s `project/ds/<folder>/` (`<folder>` is the folder you install this system under; `fonts/Georama-VariableFont_wdth_wght.ttf` lands on `project/ds/<folder>/fonts/Georama-VariableFont_wdth_wght.ttf`), in the same call that installs this system. Link that copy of `tokens.css` in the artboard’s `<head>` as `ds/<folder>/tokens.css`, or as Design’s instructions say for an artboard in a folder. If the install’s reply leaves a font out, bring that font in as for any other page.
+- **Slides deck:** for each family you use in the deck (`faces` holds at most the number of typefaces Slides’ `deck-files.md` gives), install its file with the system and name the path it lands on as that family’s `src` in `project/deck.json` `faces`, under the key in the Slides column. A deck takes a font as a file only under the rule in Slides’ `fonts.md` (no space or leading underscore in its path, for two): any other font, or one kept by id, is uploaded as `fonts.md` says.
+- **Any other page:** one file per family is enough (below: the upright face nearest regular weight; bold and italic synthesize). Fetch it as the fetch column says (Artifact tool `read`, that id or path as `path`), upload it as an asset (`publish`, `file_path`, `asset:true`) and declare it with an `@font-face { font-family: "<family>"; src: url(<uploaded>) }` rule.
+
+`tokens.css` carries the `@font-face` rules for a page that links it and names each family by the CSS variable below.
+
+| family | file | fetch | CSS | Slides `faces` key |
+| --- | --- | --- | --- | --- |
+| Georama | `fonts/Georama-VariableFont_wdth_wght.ttf` (weight 100 900) | `read` the file with `project/` in front | `var(--font-brand)` | `georama` |
+
+Every face: `fonts/Georama-VariableFont_wdth_wght.ttf` (Georama, 100 900), `fonts/Georama-Italic-VariableFont_wdth_wght.ttf` (Georama, 100 900, italic).
+
+## Spacing
+
+### Use
+
+```css
+padding: var(--s-1);
+```
+
+### Tokens (11)
+
+| token | value | usage |
+| --- | --- | --- |
+| `s-1` | 4px | Gap mínimo. |
+| `s-2` | 8px | Gap entre ícone e texto, badges. |
+| `s-3` | 12px | Padding horizontal de input. |
+| `s-4` | 16px | Gap padrão entre elementos. |
+| `s-5` | 20px | Padding horizontal do botão lg. |
+| `s-6` | 24px | Padding interno mínimo de card. |
+| `s-8` | 32px | Espaço entre grupos. |
+| `s-10` | 40px | Seções compactas. |
+| `s-12` | 48px | Seções de página. |
+| `s-16` | 64px | Seções grandes. |
+| `s-20` | 80px | Heros. |
+
+## Radius
+
+### Use
+
+```css
+/* var(--r-xs) */
+```
+
+### Tokens (8)
+
+| token | value | usage |
+| --- | --- | --- |
+| `r-xs` | 4px | Checkbox. |
+| `r-sm` | 6px | Badge, topo das abas, linha de checkbox. |
+| `r-md` | 8px | Botões, inputs, busca. |
+| `r-lg` | 12px | Blocos médios. |
+| `r-xl` | 16px | Card. |
+| `r-2xl` | 20px | Painéis grandes. |
+| `r-3xl` | 28px | Hero, mockups. |
+| `r-full` | 9999px | Pílulas e chips — nunca em botão retangular padrão. |
+
+## Shadow
+
+### Use
+
+```css
+/* var(--sh-xs) */
+```
+
+### Tokens (10)
+
+| token | value | usage |
+| --- | --- | --- |
+| `sh-xs` | 0 1px 2px rgba(35, 44, 52, 0.05) | Botão secundário, input. |
+| `sh-sm` | 0 1px 2px rgba(35, 44, 52, 0.06), 0 1px 3px rgba(35, 44, 52, 0.05) | Elevação leve. |
+| `sh-md` | 0 2px 4px rgba(35, 44, 52, 0.04), 0 6px 16px rgba(35, 44, 52, 0.07) | Card em hover, popover do Select. |
+| `sh-lg` | 0 4px 8px rgba(35, 44, 52, 0.05), 0 16px 32px rgba(35, 44, 52, 0.10) | Menus e painéis flutuantes. |
+| `sh-xl` | 0 8px 16px rgba(35, 44, 52, 0.06), 0 24px 60px rgba(35, 44, 52, 0.14) | Modais. |
+| `sh-inset` | inset 0 0 0 1px rgba(255,255,255,0.08) | Brilho interno sobre fundos escuros. |
+| `sh-ring-brand` | 0 0 0 3px rgba(129, 14, 86, 0.15) | Anel de seleção vinho. |
+| `sh-ring-focus` | 0 0 0 3px rgba(191, 156, 255, 0.50) | Foco visível de botões e inputs (roxo). |
+| `sh-ring-danger` | 0 0 0 3px rgba(179, 38, 30, 0.18) | Foco de input inválido. |
+| `sh-ring-success` | 0 0 0 3px rgba(31, 122, 76, 0.18) | Foco de input válido. |

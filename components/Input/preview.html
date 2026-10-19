@@ -1,0 +1,7 @@
+<!-- @dsCard group="Formulário" height=200 subtitle="default · invalid · disabled" -->
+<div style="padding:var(--s-6);display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--s-4);background:var(--surface)">
+  <div class="field"><label for="cpf">CPF</label><input id="cpf" class="input" placeholder="000.000.000-00"><span class="hint">Apenas números</span></div>
+  <div class="field"><label for="email">E-mail</label><input id="email" class="input invalid" value="maria@" aria-invalid="true" aria-describedby="email-err"><span class="error" id="email-err">Informe um e-mail completo, como nome@dominio.com.br</span></div>
+  <div class="field"><label for="carteira">Carteirinha</label><input id="carteira" class="input" value="0042 1180 3301" disabled></div>
+</div>
+<script></script>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Camada_2" data-name="Camada 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 46.3 41.91">
+  <defs>
+    <style>
+      .cls-1 {
+        stroke: #a30069;
+      }
+
+      .cls-1, .cls-2 {
+        fill: none;
+        stroke-miterlimit: 10;
+        stroke-width: 1.95px;
+      }
+
+      .cls-2 {
+        stroke: #5ee8fc;
+      }
+    </style>
+  </defs>
+  <g id="Camada_1-2" data-name="Camada 1">
+    <g>
+      <line class="cls-2" x1="6.85" y1="6.68" x2="6.85" y2="35.23"/>
+      <line class="cls-2" x1="13.95" y1="6.68" x2="13.95" y2="35.23"/>
+      <line class="cls-2" x1="17.61" y1="6.68" x2="17.61" y2="35.23"/>
+      <line class="cls-2" x1="26.15" y1="6.68" x2="26.15" y2="35.23"/>
+      <line class="cls-2" x1="32.91" y1="6.68" x2="32.91" y2="35.23"/>
+      <line class="cls-2" x1="36.13" y1="6.68" x2="36.13" y2="35.23"/>
+      <line class="cls-2" x1="39.45" y1="6.68" x2="39.45" y2="35.23"/>
+      <path class="cls-1" d="m45.33,34.35v4.69c0,1.04-.85,1.89-1.89,1.89h-4.21M.97,34.35v4.69c0,1.04.85,1.89,1.89,1.89h4.21M45.33,7.56V2.86c0-1.04-.85-1.89-1.89-1.89h-4.21M.97,7.56V2.86c0-1.04.85-1.89,1.89-1.89h4.21"/>
+    </g>
+  </g>
+</svg>

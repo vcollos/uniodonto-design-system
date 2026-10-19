@@ -1,0 +1,65 @@
+<!-- @dsCard group="Marca" height=640 width=960 subtitle="Selo SomosCoop: proporção, posição, assinatura conjunta e cores" -->
+<style>
+  .wrap { padding: var(--s-6); background: var(--bg); font-family: var(--font-brand); color: var(--text); display: grid; grid-template-columns: 1fr 1fr; gap: var(--s-4); }
+  .panel { background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-xl); padding: var(--s-5); display: flex; flex-direction: column; gap: var(--s-4); }
+  .panel h3 { font-size: 15px; font-weight: 700; font-style: italic; color: var(--uni-vinho-escuro); }
+  .panel p { font-size: 12px; color: var(--text-muted); font-style: italic; line-height: 1.4; }
+  .wrap img { display: block; height: auto; }
+  .measure { display: flex; align-items: center; gap: 6px; font-size: 11px; font-style: italic; color: var(--uni-vinho-claro); }
+  .measure::before, .measure::after { content: ''; flex: 1; height: 1px; background: currentColor; }
+  .pages { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--s-3); }
+  .page { position: relative; aspect-ratio: 3 / 4; border: 1px solid var(--border-strong); border-radius: var(--r-md); background: var(--n-0); overflow: hidden; }
+  .page.vinho { background: var(--uni-vinho-escuro); border-color: var(--uni-vinho-escuro); }
+  .page img { position: absolute; }
+  .cap { font-size: 11px; font-style: italic; color: var(--text-muted); text-align: center; margin-top: 4px; }
+  .swatches { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+  .sw { height: 52px; border-radius: var(--r-md); display: flex; align-items: center; justify-content: center; padding: 0 12px; border: 1px solid var(--border); }
+  .sw img { width: 100%; }
+</style>
+<div class="wrap">
+  <section class="panel">
+    <h3>Proporção</h3>
+    <div style="width:360px;display:flex;flex-direction:column;gap:12px">
+      <img src="../../assets/Logos/logotipo-vinho.svg" alt="uniodonto" style="width:360px">
+      <img src="../../assets/SomosCoop/somoscoop-vinho.svg" alt="SomosCoop" style="width:270px">
+      <div class="measure" style="width:270px">no máximo 3/4 da largura do logotipo</div>
+    </div>
+    <p>O selo é endosso: nunca maior que 3/4 do logotipo (a palavra, sem o símbolo). Nas peças reais fica entre 1/3 e 3/5.</p>
+  </section>
+
+  <section class="panel">
+    <h3>Distanciamento e posicionamento</h3>
+    <div class="pages">
+      <div><div class="page vinho"><img src="../../assets/SomosCoop/somoscoop-negativo.svg" alt="SomosCoop" style="left:8%;top:7%;width:34%"></div><div class="cap">Verso da capa</div></div>
+      <div><div class="page vinho"><img src="../../assets/Logos/logo-horizontal-negativo-branco.svg" alt="Uniodonto" style="right:8%;top:45%;width:62%"></div><div class="cap">Capa</div></div>
+      <div><div class="page"><img src="../../assets/Logos/logo-horizontal-vinho.svg" alt="Uniodonto" style="right:8%;top:8%;width:62%"><img src="../../assets/SomosCoop/somoscoop-vinho.svg" alt="SomosCoop" style="right:8%;bottom:7%;width:30%"></div><div class="cap">Página única</div></div>
+    </div>
+    <p>Sempre num canto superior ou inferior, oposto à marca Uniodonto. Capa e verso: marca na capa, selo no verso.</p>
+  </section>
+
+  <section class="panel">
+    <h3>Assinatura conjunta</h3>
+    <div style="display:flex;gap:var(--s-8);align-items:flex-end;flex-wrap:wrap">
+      <div style="width:230px;display:flex;flex-direction:column;gap:8px">
+        <img src="../../assets/Logos/logo-horizontal-vinho.svg" alt="Uniodonto" style="width:230px">
+        <img src="../../assets/SomosCoop/somoscoop-vinho.svg" alt="SomosCoop" style="width:140px">
+      </div>
+      <div style="display:flex;align-items:flex-end;gap:10px">
+        <img src="../../assets/Logos/logo-horizontal-vinho.svg" alt="Uniodonto" style="width:150px">
+        <img src="../../assets/SomosCoop/somoscoop-vinho.svg" alt="SomosCoop" style="width:68px;margin-bottom:3px">
+      </div>
+    </div>
+    <p>Só quando a peça não comporta assinaturas distanciadas. Vertical: selo abaixo, alinhado à esquerda, a 1/2 U. Horizontal: selo à direita do símbolo, a 1/2 U, alinhado pela base.</p>
+  </section>
+
+  <section class="panel">
+    <h3>Cores de aplicação</h3>
+    <div class="swatches">
+      <div class="sw" style="background:var(--n-0)"><img src="../../assets/SomosCoop/somoscoop-vinho.svg" alt="SomosCoop vinho"></div>
+      <div class="sw" style="background:var(--n-0)"><img src="../../assets/SomosCoop/somoscoop-roxo.svg" alt="SomosCoop roxo"></div>
+      <div class="sw" style="background:var(--uni-vinho-escuro);border-color:var(--uni-vinho-escuro)"><img src="../../assets/SomosCoop/somoscoop-negativo.svg" alt="SomosCoop branco"></div>
+    </div>
+    <p>Branco ou qualquer cor da paleta Uniodonto, com contraste sobre o fundo. Arquivos: <code>somoscoop-vinho</code>, <code>somoscoop-roxo</code>, <code>somoscoop-negativo</code> (branco); <code>somoscoop-positivo</code> é a cor original do movimento.</p>
+  </section>
+</div>
+<script></script>

@@ -1,0 +1,90 @@
+<!-- @dsCard group="Marca" height=340 width=960 subtitle="Assinatura da Singular: digite o nome e baixe o SVG" -->
+<style>
+  .sg { padding: var(--s-6); background: var(--bg); font-family: var(--font-brand); color: var(--text); display: flex; flex-direction: column; gap: var(--s-4); }
+  .sg-bar { display: flex; flex-wrap: wrap; gap: var(--s-3); align-items: flex-end; }
+  .sg-bar label { display: flex; flex-direction: column; gap: 4px; font-size: 12px; font-weight: 700; font-style: italic; color: var(--uni-vinho-escuro); }
+  .sg-bar input, .sg-bar select { height: 40px; padding: 0 12px; border: 1px solid var(--border-strong); border-radius: var(--r-md); font: inherit; font-size: 14px; background: var(--n-0); color: var(--text); min-width: 220px; }
+  .sg-bar button { height: 40px; padding: 0 18px; border: 0; border-radius: var(--r-lg); background: var(--uni-vinho-escuro); color: #fff; font: inherit; font-weight: 700; font-style: italic; cursor: pointer; }
+  .sg-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s-4); }
+  .sg-tile { border-radius: var(--r-xl); border: 1px solid var(--border); padding: var(--s-6); min-height: 150px; display: flex; flex-direction: column; justify-content: center; gap: var(--s-3); background: var(--n-0); }
+  .sg-tile.neg { background: var(--uni-vinho-escuro); border-color: var(--uni-vinho-escuro); }
+  .sg-tile svg { display: block; width: 100%; max-height: 120px; }
+  .sg-tile .cap { font-size: 11px; font-style: italic; color: var(--text-muted); display: flex; justify-content: space-between; align-items: center; }
+  .sg-tile.neg .cap { color: var(--uni-vinho-claro); }
+  .sg-tile .cap a { color: inherit; font-weight: 700; cursor: pointer; text-decoration: underline; }
+  .sg-note { font-size: 12px; font-style: italic; color: var(--text-muted); line-height: 1.4; }
+</style>
+<div class="sg">
+  <div class="sg-bar">
+    <label>Nome da Singular<input id="sg-name" value="Rio Grande do Norte" maxlength="40"></label>
+    <label>Versão<select id="sg-ver">
+      <option value="horizontal-distante-A">Horizontal distante A (preferencial)</option>
+      <option value="horizontal-distante-B">Horizontal distante B</option>
+      <option value="horizontal-proxima-A">Horizontal próxima A</option>
+      <option value="horizontal-proxima-B">Horizontal próxima B</option>
+      <option value="vertical-distante">Vertical distante</option>
+      <option value="vertical-proxima">Vertical próxima</option>
+    </select></label>
+  </div>
+  <div class="sg-grid">
+    <div class="sg-tile"><div data-v="positiva"></div><div class="cap"><span>Positiva · fundo branco</span><a data-dl="positiva">Baixar SVG</a></div></div>
+    <div class="sg-tile neg"><div data-v="negativa"></div><div class="cap"><span>Negativa · fundo vinho</span><a data-dl="negativa">Baixar SVG</a></div></div>
+  </div>
+  <p class="sg-note">Nome em Georama Itálico, caixa alta e baixa, entreletra 25, na cor <b>uni-roxo</b>. Símbolo e logotipo são curvas — nunca redesenhe. O SVG baixado mantém o nome como texto: quem abrir precisa ter Georama instalada (ou converta em curvas antes de enviar à gráfica).</p>
+</div>
+<script>
+(function () {
+  var base = '../../assets/Singulares/';
+  var cache = {};
+  var nameEl = document.getElementById('sg-name');
+  var verEl = document.getElementById('sg-ver');
+  function load(file) {
+    if (!cache[file]) cache[file] = fetch(base + file).then(function (r) { return r.text(); });
+    return cache[file];
+  }
+  function render(slot, txt, name) {
+    slot.innerHTML = txt.replace(/^<\?xml[^>]*>\s*/, '');
+    var svg = slot.querySelector('svg');
+    var t = svg.querySelector('text');
+    if (t) {
+      while (t.firstChild) t.removeChild(t.firstChild);
+      var s = document.createElementNS('http://www.w3.org/2000/svg', 'tspan');
+      s.setAttribute('x', '0'); s.setAttribute('y', '0');
+      s.textContent = name;
+      t.appendChild(s);
+      t.style.fontFamily = 'Georama, sans-serif';
+      t.style.letterSpacing = '.025em';
+    }
+    svg.setAttribute('aria-label', 'Uniodonto ' + name);
+    var b = svg.getBBox(), p = b.height * 0.04;
+    svg.setAttribute('viewBox', [b.x - p, b.y - p, b.width + 2 * p, b.height + 2 * p].map(function (n) { return n.toFixed(2); }).join(' '));
+  }
+  function update() {
+    var name = nameEl.value.trim() || 'Nome da Singular';
+    var v = verEl.value;
+    document.querySelectorAll('[data-v]').forEach(function (slot) {
+      load(v + '-' + slot.dataset.v + '.svg').then(function (txt) {
+        if (document.fonts && document.fonts.load) {
+          document.fonts.load('italic 100px Georama').then(function () { render(slot, txt, name); }, function () { render(slot, txt, name); });
+        } else render(slot, txt, name);
+      });
+    });
+  }
+  document.querySelectorAll('[data-dl]').forEach(function (a) {
+    a.addEventListener('click', function () {
+      var svg = document.querySelector('[data-v="' + a.dataset.dl + '"] svg');
+      if (!svg) return;
+      var src = '<?xml version="1.0" encoding="utf-8"?>\n' + svg.outerHTML.replace(/font-family:\s*Georama, sans-serif/, 'font-family:Georama-Italic, Georama');
+      var slug = (nameEl.value.trim() || 'singular').normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase().replace(/[^a-z0-9]+/g, '-');
+      var url = URL.createObjectURL(new Blob([src], { type: 'image/svg+xml' }));
+      var link = document.createElement('a');
+      link.href = url; link.download = 'uniodonto-' + slug + '-' + verEl.value + '-' + a.dataset.dl + '.svg';
+      document.body.appendChild(link); link.click(); link.remove();
+      setTimeout(function () { URL.revokeObjectURL(url); }, 1000);
+    });
+  });
+  nameEl.addEventListener('input', update);
+  verEl.addEventListener('change', update);
+  update();
+})();
+</script>

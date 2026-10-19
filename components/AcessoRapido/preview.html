@@ -1,0 +1,22 @@
+<!-- @dsCard group="Navegação" height=330 subtitle="Acesso rápido do portal: ícone simplificado sempre com descritivo" -->
+<style>
+  .quick-icon { display: flex; align-items: center; justify-content: center; }
+  .quick-icon img { max-width: 100%; max-height: 100%; display: block; }
+  .quick-card.active .quick-icon { background: var(--n-0); border-radius: var(--r-md); padding: 4px; width: 48px; height: 48px; }
+  .eyebrow { font-size: 12px; font-weight: 700; font-style: italic; color: var(--uni-vinho-escuro); display: inline-flex; flex-direction: column; gap: 4px; margin-bottom: var(--s-4); }
+  .eyebrow::after { content: ''; width: 24px; height: 2px; border-radius: 2px; background: var(--uni-roxo); }
+</style>
+<div style="padding:var(--s-6);background:var(--surface);font-family:var(--font-brand)">
+  <span class="eyebrow">Acesso rápido</span>
+  <div class="quick-grid">
+    <a class="quick-card active" href="#"><span class="quick-icon"><img src="../../assets/Icones/icone-buscar-dentista.svg" alt=""></span><span class="quick-rule"></span><span class="quick-label"><b>Buscar</b>Dentista</span></a>
+    <a class="quick-card" href="#"><span class="quick-icon"><img src="../../assets/Icones/icone-contrate-seu-plano.svg" alt=""></span><span class="quick-rule"></span><span class="quick-label"><b>Contratar</b>Plano</span></a>
+    <a class="quick-card" href="#"><span class="quick-icon"><img src="../../assets/Icones/icone-boleto.svg" alt=""></span><span class="quick-rule"></span><span class="quick-label"><b>2ª Via de</b>Boleto</span></a>
+    <a class="quick-card" href="#"><span class="quick-icon"><img src="../../assets/Icones/icone-imposto-de-renda.svg" alt=""></span><span class="quick-rule"></span><span class="quick-label"><b>Imposto</b>de Renda</span></a>
+    <a class="quick-card" href="#"><span class="quick-icon"><img src="../../assets/Icones/icone-portal-do-cliente.svg" alt=""></span><span class="quick-rule"></span><span class="quick-label"><b>Portal do</b>Cliente</span></a>
+    <a class="quick-card" href="#"><span class="quick-icon"><img src="../../assets/Icones/icone-portal-da-empresa.svg" alt=""></span><span class="quick-rule"></span><span class="quick-label"><b>Portal</b>Empresa</span></a>
+    <a class="quick-card" href="#"><span class="quick-icon"><img src="../../assets/Icones/icone-aprovacao-online.svg" alt=""></span><span class="quick-rule"></span><span class="quick-label"><b>Aprovação</b>Online</span></a>
+    <a class="quick-card" href="#"><span class="quick-icon"><img src="../../assets/Icones/icone-plantao-24h.svg" alt=""></span><span class="quick-rule"></span><span class="quick-label"><b>Plantão</b>24h</span></a>
+  </div>
+</div>
+<script>document.querySelectorAll('.quick-card').forEach(function (c) { c.addEventListener('click', function (e) { e.preventDefault(); }); });</script>

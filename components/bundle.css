@@ -1,0 +1,303 @@
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&display=swap');
+
+/* Uniodonto Design System — component stylesheet.
+   Lifted from public/styles.css (sections RESET, BUTTONS, FORM, BADGE, CARD, TABS).
+   Colors, shadows, spacing, radii and font stacks come from tokens.json (tokens.css);
+   only the motion values, which tokens.json does not hold, are declared here. */
+
+:root {
+  --e-standard: cubic-bezier(0.2, 0, 0, 1);
+  --e-emphasized: cubic-bezier(0.25, 0.1, 0, 1);
+  --d-fast: 120ms;
+  --d-med: 200ms;
+  --d-slow: 320ms;
+}
+
+/* =========================================================
+   RESET
+========================================================= */
+*, *::before, *::after { box-sizing: border-box; }
+html, body {
+  margin: 0; padding: 0;
+  font-family: var(--font-brand);
+  font-size: 15px;
+  line-height: 1.55;
+  color: var(--text);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  font-feature-settings: "ss01", "cv02", "cv11";
+}
+h1, h2, h3, h4, h5, p { margin: 0; }
+a { color: var(--uni-vinho-escuro); text-decoration: none; }
+a:hover { text-decoration: underline; text-underline-offset: 3px; }
+button, input, select, textarea { font-family: inherit; font-size: inherit; color: inherit; }
+code, pre { font-family: var(--font-mono); font-size: 0.92em; }
+img { display: block; max-width: 100%; }
+
+::selection { background: var(--uni-roxo); color: var(--uni-vinho-ultra); }
+
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-thumb { background: var(--border-strong); border-radius: var(--r-full); border: 2px solid transparent; background-clip: padding-box; }
+::-webkit-scrollbar-thumb:hover { background: var(--n-200); background-clip: padding-box; border: 2px solid transparent; }
+
+/* =========================================================
+   BUTTONS — crafted states
+========================================================= */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  gap: 6px;
+  font-family: inherit;
+  font-weight: 700;
+  font-style: italic;
+  letter-spacing: 0.01em;
+  border-radius: var(--r-lg); /* brand book, componentes digitais: canto bem arredondado, não pílula; texto bold itálico */
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: transform var(--d-fast) var(--e-standard),
+              background-color var(--d-fast) var(--e-standard),
+              color var(--d-fast) var(--e-standard),
+              box-shadow var(--d-fast) var(--e-standard),
+              border-color var(--d-fast) var(--e-standard);
+  user-select: none;
+  white-space: nowrap;
+  line-height: 1;
+}
+.btn:focus-visible { outline: none; box-shadow: var(--sh-ring-focus); }
+.btn:disabled { opacity: 0.4; cursor: not-allowed; pointer-events: none; }
+
+.btn.sm { height: 28px; padding: 0 10px; font-size: 12.5px; gap: 5px; }
+.btn.md { height: 36px; padding: 0 14px; font-size: 13.5px; }
+.btn.lg { height: 44px; padding: 0 20px; font-size: 14.5px; gap: 8px; }
+
+/* Primary */
+.btn.primary {
+  background: var(--uni-vinho-escuro);
+  color: var(--text-on-brand);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.12), 0 1px 2px rgba(85, 0, 57, 0.20);
+}
+.btn.primary:hover { background: var(--uni-vinho-medio); }
+.btn.primary:active { background: var(--uni-vinho-ultra); transform: translateY(0.5px); }
+
+/* Secondary (bordered) */
+.btn.secondary {
+  background: var(--surface);
+  color: var(--text-strong);
+  border-color: var(--border-strong);
+  box-shadow: var(--sh-xs);
+}
+.btn.secondary:hover { background: var(--surface-muted); border-color: var(--n-200); }
+.btn.secondary:active { background: var(--surface-inset); }
+
+/* Tertiary (ghost) */
+.btn.tertiary {
+  background: transparent;
+  color: var(--text);
+  border-color: transparent;
+}
+.btn.tertiary:hover { background: var(--surface-muted); color: var(--text-strong); }
+
+/* Accent (complementary, never in institutional context) */
+.btn.accent {
+  background: var(--uni-lima);
+  color: var(--uni-vinho-ultra);
+  font-weight: 600;
+}
+.btn.accent:hover { background: #D1F060; }
+
+/* Danger */
+.btn.danger {
+  background: var(--surface);
+  color: var(--danger);
+  border-color: var(--border-strong);
+}
+.btn.danger:hover { background: var(--danger-bg); border-color: var(--danger); }
+
+/* =========================================================
+   FORM — Input, Select, Check, Radio
+========================================================= */
+.field { display: flex; flex-direction: column; gap: 6px; }
+.field label {
+  font-size: 13px;
+  font-weight: 700;
+  font-style: italic;
+  color: var(--uni-vinho-escuro); /* brand book usa lilás; vinho mantém 9,9:1 de contraste */
+  letter-spacing: 0.01em;
+}
+.field .hint { font-size: 12px; color: var(--text-muted); }
+.field .error { font-size: 12px; color: var(--danger); display: flex; align-items: center; gap: 4px; }
+.field .success { font-size: 12px; color: var(--success); display: flex; align-items: center; gap: 4px; }
+
+.input {
+  height: 38px;
+  padding: 0 12px;
+  background: var(--surface);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--r-md);
+  font-size: 14px;
+  color: var(--text);
+  transition: all var(--d-fast) var(--e-standard);
+  width: 100%;
+  box-shadow: var(--sh-xs);
+  outline: 0;
+}
+.input::placeholder { color: var(--text-subtle); }
+.input:hover { border-color: var(--n-200); }
+.input:focus { border-color: var(--uni-vinho-escuro); box-shadow: var(--sh-ring-focus); }
+.input:disabled { background: var(--surface-muted); color: var(--text-subtle); cursor: not-allowed; }
+.input.invalid { border-color: var(--danger); }
+.input.invalid:focus { box-shadow: var(--sh-ring-danger); }
+.input.valid { border-color: var(--success); }
+.input.valid:focus { box-shadow: var(--sh-ring-success); }
+
+select.input { appearance: none; background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12' fill='none' stroke='%236B7C8A' stroke-width='1.6'><path d='m3 5 3 3 3-3'/></svg>"); background-repeat: no-repeat; background-position: right 12px center; padding-right: 32px; }
+
+.check-row {
+  display: flex; align-items: center; gap: 10px;
+  padding: 8px 10px;
+  border-radius: var(--r-sm);
+  cursor: pointer;
+  color: var(--text);
+  font-size: 14px;
+  transition: background var(--d-fast) var(--e-standard);
+}
+.check-row:hover { background: var(--surface-muted); }
+
+.cbox, .radio {
+  width: 18px; height: 18px;
+  border: 1.5px solid var(--n-200);
+  background: var(--surface);
+  display: flex; align-items: center; justify-content: center;
+  transition: all var(--d-fast) var(--e-standard);
+  flex-shrink: 0;
+}
+.cbox { border-radius: var(--r-xs); }
+.radio { border-radius: 50%; }
+.cbox.on { background: var(--uni-vinho-escuro); border-color: var(--uni-vinho-escuro); }
+.cbox.on::after { content: ''; width: 9px; height: 5px; border-left: 2px solid white; border-bottom: 2px solid white; transform: rotate(-45deg) translate(1px, -1px); }
+.radio.on { border-color: var(--uni-vinho-escuro); border-width: 5px; }
+
+/* =========================================================
+   BADGE
+========================================================= */
+.badge {
+  display: inline-flex; align-items: center; gap: 5px;
+  height: 22px;
+  padding: 0 8px;
+  font-size: 11.5px;
+  font-weight: 600;
+  letter-spacing: -0.005em;
+  border-radius: var(--r-sm);
+  line-height: 1;
+  border: 1px solid transparent;
+  white-space: nowrap;
+}
+.badge.neutral { background: var(--surface-muted); color: var(--text); border-color: var(--border); }
+.badge.brand { background: var(--uni-vinho-escuro); color: white; }
+.badge.brand-soft { background: color-mix(in srgb, var(--uni-vinho-escuro) 10%, var(--surface)); color: var(--uni-vinho-escuro); border-color: color-mix(in srgb, var(--uni-vinho-escuro) 20%, transparent); }
+.badge.success { background: var(--success-bg); color: var(--success); border-color: color-mix(in srgb, var(--success) 20%, transparent); }
+.badge.warning { background: var(--warning-bg); color: var(--warning); border-color: color-mix(in srgb, var(--warning) 20%, transparent); }
+.badge.danger  { background: var(--danger-bg);  color: var(--danger);  border-color: color-mix(in srgb, var(--danger) 20%, transparent); }
+.badge.info    { background: var(--info-bg);    color: var(--info);    border-color: color-mix(in srgb, var(--info) 20%, transparent); }
+.badge.roxo    { background: color-mix(in srgb, var(--uni-roxo) 35%, var(--surface)); color: var(--uni-vinho-ultra); border-color: color-mix(in srgb, var(--uni-roxo) 50%, transparent); }
+.badge.goiaba  { background: color-mix(in srgb, var(--uni-goiaba) 22%, var(--surface)); color: #7A1024; border-color: color-mix(in srgb, var(--uni-goiaba) 45%, transparent); }
+.badge.lima    { background: color-mix(in srgb, var(--uni-lima) 45%, var(--surface)); color: var(--uni-vinho-ultra); border-color: color-mix(in srgb, var(--uni-lima) 60%, transparent); }
+.badge.ciano   { background: color-mix(in srgb, var(--uni-ciano) 30%, var(--surface)); color: var(--uni-vinho-ultra); border-color: color-mix(in srgb, var(--uni-ciano) 50%, transparent); }
+
+/* =========================================================
+   CARD
+========================================================= */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-xl);
+  overflow: hidden;
+  transition: transform var(--d-med) var(--e-standard), box-shadow var(--d-med) var(--e-standard), border-color var(--d-med) var(--e-standard);
+}
+.card:hover { border-color: var(--border-strong); box-shadow: var(--sh-md); }
+
+/* =========================================================
+   TABS
+========================================================= */
+.tabs-list {
+  display: flex;
+  gap: 4px;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 0;
+}
+.tab-trigger {
+  background: transparent;
+  border: 0;
+  padding: 10px 14px;
+  font-size: 13.5px;
+  font-weight: 500;
+  color: var(--text-muted);
+  cursor: pointer;
+  border-radius: var(--r-sm) var(--r-sm) 0 0;
+  position: relative;
+  transition: color var(--d-fast) var(--e-standard);
+  margin-bottom: -1px;
+}
+.tab-trigger:hover { color: var(--text-strong); }
+.tab-trigger.active { color: var(--text-strong); font-weight: 600; }
+.tab-trigger.active::after {
+  content: ''; position: absolute; left: 12px; right: 12px; bottom: -1px; height: 2px;
+  background: var(--uni-vinho-escuro);
+  border-radius: 2px 2px 0 0;
+}
+
+
+/* =========================================================
+   BRAND BOOK — etiquetas, acesso rápido, tarja ANS, endosso
+========================================================= */
+.pill-tag {
+  display: inline-flex; align-items: center; gap: 6px;
+  height: 28px; padding: 0 var(--s-3);
+  border: 1px solid var(--uni-vinho-escuro);
+  border-radius: var(--r-full);
+  color: var(--uni-vinho-escuro);
+  font-size: 13px; font-weight: 700; font-style: italic;
+  background: transparent; white-space: nowrap;
+}
+.pill-tag.solid { background: var(--uni-vinho-escuro); color: var(--text-on-brand); }
+
+.quick-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--s-3); }
+.quick-card {
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: var(--s-2);
+  min-height: 112px; padding: var(--s-4) var(--s-3);
+  background: var(--n-50);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--r-3xl);
+  box-shadow: var(--sh-xs);
+  color: var(--uni-vinho-escuro);
+  text-align: center; cursor: pointer; text-decoration: none;
+  transition: background var(--d-fast) var(--e-standard), box-shadow var(--d-fast) var(--e-standard);
+}
+.quick-card:hover { box-shadow: var(--sh-md); }
+.quick-card:focus-visible { outline: none; box-shadow: var(--sh-ring-focus); border-color: var(--uni-vinho-escuro); }
+.quick-card .quick-icon { width: 40px; height: 40px; }
+.quick-card .quick-rule { width: 32px; height: 1px; background: var(--border-strong); }
+.quick-card .quick-label { font-size: 13px; line-height: 1.25; font-style: italic; }
+.quick-card .quick-label b { display: block; font-weight: 700; }
+.quick-card.active { background: var(--uni-vinho-escuro); border-color: var(--uni-vinho-escuro); color: var(--text-on-brand); }
+.quick-card.active .quick-rule { background: rgba(255, 255, 255, 0.35); }
+
+.ans-tarja { display: inline-flex; flex-direction: column; gap: 2px; font-size: 9px; line-height: 1.25; color: var(--n-900); font-family: var(--font-brand); }
+.ans-tarja .ans-reg {
+  align-self: flex-start;
+  background: var(--n-900); color: var(--n-0);
+  outline: 1px solid var(--n-0); outline-offset: -2px;
+  padding: 5px 8px; font-weight: 700; letter-spacing: 0.02em;
+}
+.ans-tarja .ans-rt { font-weight: 700; }
+.ans-tarja.vertical { writing-mode: vertical-rl; transform: rotate(180deg); }
+.ans-tarja.vertical .ans-reg { padding: 8px 5px; } /* vertical: respiro nas pontas do texto */
+.ans-tarja.on-dark { color: var(--n-0); }
+
+.coop-slot {
+  display: inline-flex; align-items: center; justify-content: center;
+  border: 1.5px dashed currentColor; border-radius: var(--r-sm);
+  font-size: 10px; font-weight: 700; font-style: italic; letter-spacing: 0.02em;
+  color: var(--uni-vinho-escuro); opacity: .9; white-space: nowrap;
+}
+.coop-slot.on-dark { color: var(--n-0); }
