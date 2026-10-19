@@ -2,7 +2,7 @@
 
 Tokens, regras do brand book e arquivos oficiais da marca **Uniodonto**, prontos para pessoas e agentes de IA (Codex, ChatGPT, Claude, Gemini, Cursor…).
 
-- **Página:** https://vcollos.github.io/uniodonto-design-system/
+- **Página:** https://designsystem.uniodonto.coop.br
 - **Para agentes:** comece por [`AGENTS.md`](AGENTS.md). Índice para LLMs: [`llms.txt`](llms.txt) · texto completo: [`llms-full.txt`](llms-full.txt)
 - **Regras resumidas:** [`RULES.md`](RULES.md) · **Brand book:** [`brandbook/`](brandbook)
 - **Tokens:** [`tokens.json`](tokens.json) · [`tokens.css`](tokens.css) · tabela em [`docs/tokens.md`](docs/tokens.md)
